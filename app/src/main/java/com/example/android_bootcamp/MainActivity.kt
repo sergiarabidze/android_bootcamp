@@ -18,8 +18,6 @@ class MainActivity : AppCompatActivity() {
          binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setup()
-
-
     }
     fun setup(){
         val editText = binding.enterAnagramId
@@ -27,18 +25,20 @@ class MainActivity : AppCompatActivity() {
         val outputButton = binding.outputId
         val anagramButton = binding.anagramId
         val clearButton = binding.clearId
-
+//assigning values
         saveButton.setOnClickListener {
             val anagramString = editText.text.toString()
             if(anagramString.isEmpty()){
                 Toast.makeText(this,"enter word", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }
+            }//if user did not enter inputs we should show toast
             anagrams.add(anagramString)
             editText.setText("")
-        }
+        }//after adding word we should clear edittext
 
         outputButton.setOnClickListener {
+            //so we have map which maps string to list of string and we take each of elements in the anagram and then we map some string to its anagrams to count occurenaces of each anagram
+            //we use for loops for it
             val map: MutableMap<String, MutableList<String>> = mutableMapOf()
             for (anagram in anagrams) {
                 var isAdded = false
@@ -49,13 +49,11 @@ class MainActivity : AppCompatActivity() {
                         break
                     }
                 }
-
                 if (!isAdded) {
                     map[anagram] = mutableListOf(anagram)
                 }
 
             }
-
             var output:String = map.size.toString()
             anagramButton.text = "anagrams:${output}"
         }
