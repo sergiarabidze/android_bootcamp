@@ -5,7 +5,11 @@ plugins {
 
 android {
     namespace = "com.example.android_bootcamp"
-    compileSdk = 34
+    compileSdk = 35
+
+    buildFeatures{
+        viewBinding = true
+    }
 
     defaultConfig {
         applicationId = "com.example.android_bootcamp"
