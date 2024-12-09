@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">android_bootcamp</string>
+    <string name="enter_anagram">Enter anagram</string>
+    <string name="save">Save</string>
+    <string name="output">Output</string>
+    <string name="anagrams">Anagrams:</string>
+    <string name="clear">clear</string>
 </resources>

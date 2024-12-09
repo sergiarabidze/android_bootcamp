@@ -12,32 +12,32 @@
         android:id="@+id/enter_anagram_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter anagram"
+        android:hint="@string/enter_anagram"
         />
 
     <Button
         android:id="@+id/save_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="@string/save"
         />
     <Button
         android:id="@+id/output_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Output"
+        android:text="@string/output"
         />
     <TextView
         android:id="@+id/anagram_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Anagrams:"
+        android:text="@string/anagrams"
         />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/clear_id"
-        android:text="clear"
+        android:text="@string/clear"
         />
 
 
