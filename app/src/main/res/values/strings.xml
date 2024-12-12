@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">android_bootcamp</string>
+    <string name = "place">Andes Mountain</string>
+    <string name = "price_string">Price</string>
+    <string name="continent">South, America</string>
+    <string name="price">230</string>
+    <string name="currency">$</string>
+    <string name="overview">Overview</string>
+    <string name="details">details</string>
+    <string name="time">8 hours</string>
+    <string name="temperature">16 C</string>
+    <string name="text">This vast mountain range is renowned for its remarkable diversity in terms of topography and climate. It features towering peaks, active volcanoes, deep canyons, expansive plateaus, and lush valleys. The Andes are also home to </string>
+    <string name="book">Book Now</string>
+    <string name="star">4.5</string>
 </resources>
