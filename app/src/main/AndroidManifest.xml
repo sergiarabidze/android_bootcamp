@@ -13,6 +13,15 @@
         android:theme="@style/Theme.Android_bootcamp"
         tools:targetApi="31">
         <activity
+            android:name=".LogInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivitySecond"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivityFirst"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
