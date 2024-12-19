@@ -134,4 +134,10 @@ class CreateAccount : Fragment() {
         }
 
     }//I tried immediately changing input type but it did not worked so here we use transformation method
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null // Avoid memory leaks
+    }
+
 }
