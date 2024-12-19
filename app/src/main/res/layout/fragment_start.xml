@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/funica_logo_id"
+        android:src="@drawable/girllogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_arrow"
+        android:scaleType="centerCrop"
+        />
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableStart="@drawable/back_arrow_main"
+        android:paddingStart="8dp"
+        android:paddingEnd="0dp"
+        android:id="@+id/back_arrow"
+        app:layout_constraintHorizontal_bias="0.04"
+        android:background="@android:color/transparent"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/funica_logo_id"
+        android:textSize="50sp"
+        android:text="@string/let_s_you_in"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/black"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_id"
+        android:drawableStart="@drawable/facebook_1_svgrepo_com"
+        android:text="@string/continue_with_facebook"
+        android:id="@+id/facebook_id"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:textSize="16sp"
+        android:background="@drawable/round_corners"
+        android:textColor="@color/black"
+        android:drawablePadding="8dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/facebook_id"
+        android:drawableStart="@drawable/google_logo_search_new_svgrepo_com"
+        android:text="@string/continue_with_google"
+        android:id="@+id/google_id"
+        android:paddingStart="48dp"
+        android:paddingEnd="48dp"
+        android:textSize="16sp"
+        android:background="@drawable/round_corners"
+        android:textColor="@color/black"
+        android:drawablePadding="8dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/google_id"
+        android:drawableStart="@drawable/apple_logo_svgrepo_com"
+        android:text="@string/continue_with_apple"
+        android:id="@+id/apple_id"
+        android:paddingStart="52dp"
+        android:paddingEnd="52dp"
+        android:textSize="16sp"
+        android:background="@drawable/round_corners"
+        android:textColor="@color/black"
+        android:drawablePadding="8dp"
+        />
+
+
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@drawable/round_corners"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/apple_id"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/or_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/apple_id"
+        android:layout_marginTop="24dp"
+        android:text="@string/or"
+        android:textSize="18sp"
+        android:background="@color/white"
+        android:padding="12dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sing_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/or_id"
+        android:background="@drawable/sign_in_up_shape"
+        android:text="@string/sign_in_with_password"
+        android:textColor="@color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="18sp"
+        android:transformPivotX="23dp"
+        android:elevation="4dp"
+        android:translationZ="4dp"
+        android:layout_margin="16dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/sign_up_id"
+        app:layout_constraintTop_toBottomOf="@id/sing_in_button"
+        android:layout_marginTop="18dp"
+        android:text="@string/don_t_have_an_account"
+        android:textSize="16sp"
+        android:background="@color/white"
+        app:layout_constraintHorizontal_bias="0.9"/>
+
+    <TextView
+        android:id="@+id/sign_up_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sing_in_button"
+        android:text="@string/sign_up"
+        android:layout_marginTop="18dp"
+        android:textColor="@color/black"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintHorizontal_bias="0.7"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

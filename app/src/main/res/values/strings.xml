@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">android_bootcamp</string>
+    <string name="let_s_you_in">Let\'s you in</string>
+    <string name="continue_with_facebook">     continue with facebook</string>
+    <string name="or">or</string>
+    <string name="sign_in_with_password">Sign in with password</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="continue_with_google">Continue with google</string>
+    <string name="continue_with_apple">Continue with apple</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_your_account">Create your account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="or_continue_with">or continue with</string>
+    <string name="sign_in">Sign in</string>
 </resources>
