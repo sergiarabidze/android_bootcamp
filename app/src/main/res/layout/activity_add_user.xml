@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddUser"
+    android:orientation="vertical"
+    android:layout_margin="24dp">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/user_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/id"
+        android:inputType="number"/>
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/first_name_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/fisrtname"
+        android:layout_marginTop="12dp"/>
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/last_name_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/lastname"
+        android:layout_marginTop="12dp"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/birthday_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/birthday"
+        android:layout_marginTop="12dp"
+        android:inputType="number"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/address_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/address"
+        android:layout_marginTop="12dp"
+        android:inputType="textEmailAddress"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_new_user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_user"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"/>
+
+
+
+
+
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

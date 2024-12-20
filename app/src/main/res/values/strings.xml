@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">android_bootcamp</string>
+    <string name="id">Id</string>
+    <string name="fisrtname">FisrtName</string>
+    <string name="lastname">LastName</string>
+    <string name="birthday">Birthday</string>
+    <string name="address">Address</string>
+    <string name="add_user">add user</string>
+    <string name="search_bar">search bar</string>
+    <string name="add_new_user">add new user</string>
+    <string name="user_not_found">User not found</string>"
 </resources>
