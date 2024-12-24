@@ -21,7 +21,7 @@ class ItemAdapter(private var items: List<ItemModel>) :
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = items[position]
 
-        holder.apply {//demonstration of my kotlin skills of using scope functions we could use with also
+        with(holder) {//demonstration of my kotlin skills of using scope functions
             image.setImageResource(item.image)
             title.text = item.title
             price.text = item.price
