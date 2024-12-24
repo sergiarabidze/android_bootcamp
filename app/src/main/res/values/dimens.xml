@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name = "navigation_bar_height">96dp</dimen>
+    <dimen name = "button_height_width">20dp</dimen>
+    <dimen name = "category_height">52dp</dimen>
+    <dimen name="margin_recycler">28dp</dimen>
+    <dimen name="margin_top">27dp</dimen>
+    <dimen name="text_size">14sp</dimen>
+    <dimen name="padding_start">30dp</dimen>
+    <dimen name="margin_end">10dp</dimen>
+</resources>

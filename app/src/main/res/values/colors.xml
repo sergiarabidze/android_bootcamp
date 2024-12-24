@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="navigation_color">#19282F</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="start_color">#22343C</color>
+    <color name="end_color">#1F2E35</color>
+    <color name="text_color">#96A7AF</color>
+    <color name="category_clicked">#3ED598</color>
+    <color name="category_not_clicked">#30444E</color>
 </resources>
