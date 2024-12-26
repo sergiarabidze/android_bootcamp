@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddLocation"
+    android:orientation="vertical">
+
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/upd_location_info_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:hint="@string/location_info"/>
+
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/upd_where_to_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:hint="@string/address"/>
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/upd_info_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:text="@string/update_location"
+        />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

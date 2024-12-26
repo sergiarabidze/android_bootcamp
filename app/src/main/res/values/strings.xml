@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">android_bootcamp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="delivery_address">Delivery address</string>
+    <string name="add_new_address">Add new address</string>
+    <string name="send_to">SEND TO</string>
+    <string name="edit">  <u>Edit</u>    </string>
+    <string name="location_info">Location info</string>
+    <string name="add_location_info">Add location info</string>
+    <string name="address">Address</string>
+    <string name="update_location">Update location</string>
+
 </resources>
