@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="online_color">#D9000000</color>
+    <color name="edit_text_background">#F4F5F6</color>
+    <color name="date_color">#B1B5C3</color>"
+    <color name="user_text_color">#E6E8EC</color>
 </resources>

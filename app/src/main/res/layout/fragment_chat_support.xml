@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ChatSupport"
+    android:background="@color/white"
+    android:id="@+id/fragment_container_view"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_recycler"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_icon"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintBottom_toTopOf="@id/edit_text"
+        app:layout_constraintVertical_bias="0"
+        android:layout_height="500dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/arrow"
+        android:id="@+id/back_arrow"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="49dp"
+        android:background="@drawable/white_circle"
+        android:elevation="8dp" />
+
+
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/user_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/back_arrow"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="28dp"
+        android:src="@drawable/user"
+        android:layout_marginTop="49dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/admin_text"
+        app:layout_constraintStart_toEndOf="@id/user_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginTop="47dp"
+        android:layout_marginStart="12dp"
+        android:text="@string/admin"
+        android:elevation="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/user_icon"
+        app:layout_constraintTop_toBottomOf="@id/admin_text"
+        android:textColor="@color/online_color"
+        android:textSize="12sp"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="12dp"
+        android:text="@string/online"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/threedot"
+        android:id="@+id/threedot"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="54dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/send_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:src="@drawable/send"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="39dp"
+        android:layout_marginEnd="11dp"
+        android:clickable="true"/>
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/send_button"
+        android:background="@drawable/edti_text_custom"
+        android:layout_marginBottom="39dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="80dp"
+        android:textColor="@color/black"
+        android:hint="@string/type_your_messages_here"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
