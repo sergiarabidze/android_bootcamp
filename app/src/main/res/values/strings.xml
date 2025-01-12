@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">android_bootcamp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="active">Active</string>
+    <string name="completed">Completed</string>
+    <string name="buy_again">Buy again</string>
+    <string name="qty">%1$s | Qty: %2$s</string>
+    <string name="pricee">$%1$s</string>
+    <string name="leave_a_review">Leave a Review</string>
+    <string name="how_is_your_order">How is your order?</string>
+    <string name="please_give_your_rating_and_also_review">Please give your rating and also review</string>
+    <string name="write_your_review">Write your review</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
 </resources>
