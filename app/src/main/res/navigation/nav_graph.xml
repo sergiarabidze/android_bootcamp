@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/payment">
+
+    <fragment
+        android:id="@+id/payment"
+        android:name="com.example.android_bootcamp.MainFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_main_fragment" >
+    </fragment>
+
+</navigation>
