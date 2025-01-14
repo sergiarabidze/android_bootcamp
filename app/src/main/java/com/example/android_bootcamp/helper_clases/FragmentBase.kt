@@ -1,4 +1,4 @@
-package com.example.android_bootcamp
+package com.example.android_bootcamp.helper_clases
 
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
@@ -10,7 +10,7 @@ import android.view.ViewGroup
 abstract class FragmentBase<VB : ViewBinding>(
     private val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> VB
 ) : Fragment() {
-
+//it will automatically generate binding for each class that's implements this class
     private var _binding: VB? = null
     protected val binding get() = _binding!!
 

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Android_bootcamp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".helper_clases.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

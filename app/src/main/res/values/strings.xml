@@ -2,4 +2,24 @@
     <string name="app_name">android_bootcamp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="payment">Payment</string>
+    <string name="card_management">Card Management</string>
+    <string name="add_new">Add new+</string>
+    <string name="or_check_out_with">or check out with</string>
+    <string name="add_new_card">Add New Card</string>
+    <string name="cardholder_name">Cardholder Name</string>
+    <string name="enter_card_name">Enter Card number</string>
+    <string name="mm_yy">MM/YY</string>
+    <string name="enter_cvv">Enter CVV</string>
+    <string name="valid_thru">VALID THRU</string>
+    <string name="cvv">CVV</string>
+    <string name="add_card">Add card</string>
+    <string name="visa">Visa</string>
+    <string name="mastercard">MasterCard</string>
+    <string name="name">NAME</string>
+    <string name="are_you_sure_you_want_to_delete_this_item">Are you sure you want to delete this item?</string>
+    <string name="yes">yes</string>
+    <string name="no">No</string>
+    <string name="expires">Expires</string>
+    <string name="card_number">Card number</string>
 </resources>

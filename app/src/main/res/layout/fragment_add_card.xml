@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/white">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow"
+        android:elevation="8dp"
+        android:background="@drawable/arrow_custom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/title"
+        app:layout_constraintHorizontal_bias="0.3"/>
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_new_card"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="24dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_id"
+        android:layout_width="match_parent"
+        android:layout_height="191dp"
+        xmlns:tools="http://schemas.android.com/tools"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        android:layout_marginTop="39dp"
+        >
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/card_item_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/photo_custom"
+            android:src="@drawable/mastercard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/card_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="94dp"
+            android:text="**** **** **** ****"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="16dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/card_holder_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_num"
+            android:text="@string/name"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            android:layout_marginTop="44dp"
+            android:layout_marginBottom="22dp"
+            android:layout_marginStart="50dp"
+            />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/valid_thru_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_num"
+            android:layout_marginTop="44dp"
+            tools:text="1asdasd"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            android:layout_marginBottom="22dp"
+            android:layout_marginEnd="60dp"
+            android:text="@string/mm_yy"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/cardholder_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cardholder_name"
+        android:textSize="16sp"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@id/item_id"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="49dp"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/cardholder_name_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text"
+        android:textColor="@color/black"
+        android:hint="@string/cardholder_name"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/cardholder_name_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/card_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/card_number"
+        android:textSize="16sp"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@id/cardholder_name_input"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/card_num_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_card_name"
+        android:background="@drawable/edit_text"
+        android:textColor="@color/black"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/card_name_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:inputType="number"/>
+
+    <TextView
+        android:id="@+id/expires_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/expires"
+        android:textSize="16sp"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toBottomOf="@id/card_num_input"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/expires_input"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/mm_yy"
+        android:textColor="@color/black"
+        android:padding="12dp"
+        android:background="@color/transparent"
+        app:layout_constraintTop_toBottomOf="@id/expires_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/cvv_input"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/cvv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cvv"
+        android:textSize="16sp"
+        android:textColor="@color/text_color"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@id/expires_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_num_input"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/cvv_input"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_cvv"
+        android:textColor="@color/black"
+        android:padding="12dp"
+        android:background="@color/transparent"
+        app:layout_constraintTop_toBottomOf="@id/cvv_label"
+        app:layout_constraintStart_toEndOf="@id/expires_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"
+        android:inputType="number"/>
+    <Button
+        android:id="@+id/add_card_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/button"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toggle_button"
+        android:text="@string/add_card"
+        android:textSize="14sp"
+        android:paddingHorizontal="64dp"
+        android:layout_marginTop="24dp"/>
+
+    <androidx.appcompat.widget.AppCompatToggleButton
+        android:id="@+id/toggle_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="@string/visa"
+        android:textOff="@string/mastercard"
+        android:background="@drawable/mastercard_custom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/expires_input"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/white"
+        android:paddingHorizontal="32dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

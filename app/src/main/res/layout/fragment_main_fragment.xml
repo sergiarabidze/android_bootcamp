@@ -1,14 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.MainFragment"
+    android:background="@color/white">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/arrow_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/arrow"
+        android:elevation="8dp"
+        android:background="@drawable/arrow_custom"
+        android:layout_marginTop="56dp"
+        android:layout_marginStart="30dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="60dp"
+        android:text="@string/payment"/>
+
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/card_management_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/arrow_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="46dp"
+        android:text="@string/card_management"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/add_new_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/card_management_id"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="59dp"
+        android:text="@string/add_new"
+        android:textSize="14sp"
+        android:textColor="@color/red" />
+
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager_id"
+        android:layout_width="wrap_content"
+        android:layout_height="191dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_management_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="41dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="22dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/or_checkout_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewpager_id"
+        app:layout_constraintHorizontal_bias="0.1"
+        android:layout_marginTop="46dp"
+        android:text="@string/or_check_out_with"
+        android:textSize="14sp"
+        android:textColor="@color/gray" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/or_checkout_id"
+        android:src="@drawable/payments"
+        android:layout_marginTop="57dp"
+/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
