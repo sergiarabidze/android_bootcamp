@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-        id("androidx.navigation.safeargs")
-
+    id("androidx.navigation.safeargs")
+    kotlin("plugin.serialization") version "2.1.0"
 }
 
 android {
@@ -43,7 +43,8 @@ android {
 
 
 dependencies {
-
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
