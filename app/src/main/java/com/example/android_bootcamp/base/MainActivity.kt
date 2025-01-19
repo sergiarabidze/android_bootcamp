@@ -1,7 +1,8 @@
-package com.example.android_bootcamp
+package com.example.android_bootcamp.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.android_bootcamp.R
 
 
 class MainActivity : AppCompatActivity() {

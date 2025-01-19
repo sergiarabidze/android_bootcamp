@@ -43,6 +43,8 @@ android {
 
 
 dependencies {
+    implementation (libs.squareup.converter.gson)
+    implementation (libs.gson)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit)
     implementation(libs.androidx.core.ktx)

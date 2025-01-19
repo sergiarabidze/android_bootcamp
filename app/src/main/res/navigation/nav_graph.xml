@@ -3,13 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/payment">
+    app:startDestination="@id/mainFragment2">
 
     <fragment
-        android:id="@+id/payment"
-        android:name="com.example.android_bootcamp.MainFragment"
-        android:label="fragment_payment"
+        android:id="@+id/register"
+        android:name="com.example.android_bootcamp.fragments.Register"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/mainFragment2"
+        android:name="com.example.android_bootcamp.fragments.MainFragment"
+        android:label="fragment_main_fragment"
         tools:layout="@layout/fragment_main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment2_to_register"
+            app:destination="@id/register" />
+        <action
+            android:id="@+id/action_mainFragment2_to_login2"
+            app:destination="@id/login2" />
     </fragment>
+    <fragment
+        android:id="@+id/login2"
+        android:name="com.example.android_bootcamp.fragments.Login"
+        android:label="Login" />
 
 </navigation>
