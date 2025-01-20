@@ -43,6 +43,10 @@ android {
 
 
 dependencies {
+    implementation (libs.glide)
+    implementation (libs.moshi.kotlin.codegen)
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit)
     implementation(libs.androidx.core.ktx)
