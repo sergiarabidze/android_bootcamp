@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".fragments.Register">
+    android:background="@color/white">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
@@ -25,7 +24,7 @@
         android:id="@+id/title_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="95dp"
+        android:layout_marginTop="65dp"
         android:text="@string/login"
         android:textColor="@color/black"
         android:textSize="48sp"
@@ -37,7 +36,7 @@
         android:id="@+id/photo_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="35dp"
         android:src="@drawable/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,14 +44,14 @@
 
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/user_name_id"
+        android:id="@+id/email_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/purple_btn"
         android:drawableStart="@drawable/login_icon"
-        android:hint="@string/username"
+        android:hint="@string/email"
         android:padding="11dp"
         android:paddingStart="33dp"
         android:textAlignment="center"
@@ -78,17 +77,19 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/user_name_id" />
+        app:layout_constraintTop_toBottomOf="@id/email_id" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/password_visibility_id"
+    <androidx.appcompat.widget.AppCompatCheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/eye"
-        app:layout_constraintBottom_toBottomOf="@id/password_id"
-        app:layout_constraintEnd_toEndOf="@id/password_id"
-        app:layout_constraintTop_toTopOf="@id/password_id" />
+        android:id="@+id/checkbox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password_id"
+        android:layout_marginStart="30dp"
+        app:layout_constraintHorizontal_bias="0.1"
+        android:text="@string/remember_me"
+        />
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -96,7 +97,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/light_purple_btn"
         android:text="@string/login"
         android:textAllCaps="false"
@@ -104,7 +105,20 @@
         android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password_id" />
+        app:layout_constraintTop_toBottomOf="@id/checkbox" />
 
-
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/register_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/light_purple_btn"
+        android:text="@string/register"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_id" />
 </androidx.constraintlayout.widget.ConstraintLayout>

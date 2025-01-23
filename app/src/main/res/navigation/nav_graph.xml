@@ -3,28 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment2">
+    app:startDestination="@id/login">
 
     <fragment
         android:id="@+id/register"
         android:name="com.example.android_bootcamp.fragments.Register"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_register_to_login2"
+            app:destination="@id/login" />
+    </fragment>
+
+
     <fragment
-        android:id="@+id/mainFragment2"
+        android:id="@+id/login"
+        android:name="Login"
+        android:label="Login" >
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/register" />
+        <action
+            android:id="@+id/action_login_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
         android:name="com.example.android_bootcamp.fragments.MainFragment"
         android:label="fragment_main_fragment"
         tools:layout="@layout/fragment_main_fragment" >
+        <argument
+            android:name="email"
+            app:argType="string" />
         <action
-            android:id="@+id/action_mainFragment2_to_register"
-            app:destination="@id/register" />
-        <action
-            android:id="@+id/action_mainFragment2_to_login2"
-            app:destination="@id/login2" />
+            android:id="@+id/action_mainFragment_to_login"
+            app:destination="@id/login" />
     </fragment>
-    <fragment
-        android:id="@+id/login2"
-        android:name="com.example.android_bootcamp.fragments.Login"
-        android:label="Login" />
+
 
 </navigation>

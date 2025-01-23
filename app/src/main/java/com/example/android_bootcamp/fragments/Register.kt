@@ -1,8 +1,10 @@
 package com.example.android_bootcamp.fragments
 
-import android.text.InputType
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.android_bootcamp.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentRegisterBinding
 import com.example.android_bootcamp.view_models.RegisterViewModel
@@ -15,42 +17,46 @@ class Register : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::
         super.setListeners()
 
         with(binding) {
-            passwordVisibilityId.setOnClickListener {
-                if (passwordId.inputType == (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
-                    passwordId.inputType =
-                        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL
-                } else {
-                    passwordId.inputType =
-                        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-                }
-                passwordId.text?.let { it1 -> passwordId.setSelection(it1.length) }
-            }
-            //when we click on the eye icon it will change text type and reveal the password
             registerId.setOnClickListener {
                 val email = emailId.text.toString()
                 val password = passwordId.text.toString()
+                val repeatPassword = passwordRepId.text.toString()
 
-                if (email.isNotEmpty() && password.isNotEmpty()) {
-                    registerViewModel.registerUser(email, password)//registering new user
-                } else {
+                if (email.isEmpty() || password.isEmpty() || repeatPassword.isEmpty()) {
                     Toast.makeText(
                         requireContext(),
-                        "Please enter email and password",
+                        "Please fill in all fields",
                         Toast.LENGTH_SHORT
                     ).show()
+                } else if (password != repeatPassword) {
+                    Toast.makeText(requireContext(), "Passwords do not match", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    registerViewModel.registerUser(email, password)
                 }
+            }
+
+            backArrowId.setOnClickListener {
+                requireActivity().onBackPressedDispatcher.onBackPressed()
             }
         }
     }
 
     override fun setUp() {
         super.setUp()
-        registerViewModel.registerResponse.observe(viewLifecycleOwner) { response ->
-            Toast.makeText(
-                requireContext(),
-                "Registration successful. User token: ${response.token}",
-                Toast.LENGTH_SHORT
-            ).show()
+
+        registerViewModel.registerResponse.observe(viewLifecycleOwner) {
+            val email = binding.emailId.text.toString()
+            val password = binding.passwordId.text.toString()
+
+            Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
+
+            setFragmentResult(
+                "REGISTER_RESULT",
+                bundleOf("email" to email, "password" to password)
+            )//sent back email and password to login fragment
+
+            findNavController().popBackStack()
         }
 
         registerViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
@@ -59,7 +65,6 @@ class Register : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::
                 "Registration failed: $errorMessage",
                 Toast.LENGTH_SHORT
             ).show()
-        }
-
+        }//error message if registration fails
     }
 }

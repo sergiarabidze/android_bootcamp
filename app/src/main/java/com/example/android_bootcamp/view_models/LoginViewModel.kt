@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.android_bootcamp.api.Request
 import com.example.android_bootcamp.api.ResponseLogin
 import com.example.android_bootcamp.api.RetrofitInstance
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
@@ -16,10 +17,15 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     fun loginUser(email: String, password: String) {
         val requestLogin = Request(email, password)
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = RetrofitInstance.api.login(requestLogin)
-                loginResponse.postValue(response)
+                if (response.isSuccessful) {
+                    loginResponse.postValue(response.body())
+
+                }else{
+                    errorMessage.postValue("Login failed: ${response.code()}")
+                }
             } catch (e: Exception) {
                 errorMessage.postValue("Login failed: ${e.message}")
             }
