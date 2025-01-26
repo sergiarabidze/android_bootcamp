@@ -43,6 +43,11 @@ android {
 
 
 dependencies {
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore.preferences.rxjava2)
+    implementation(libs.androidx.datastore.preferences.rxjava3)
     implementation (libs.gson)
     implementation (libs.squareup.converter.gson)
     implementation(libs.kotlinx.serialization.json)

@@ -67,4 +67,20 @@
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/photo_id" />
 
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/users_btn_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/light_purple_btn"
+        android:text="@string/others_profiles"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/log_out_id" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

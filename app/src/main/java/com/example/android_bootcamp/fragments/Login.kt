@@ -1,22 +1,27 @@
-import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.Toast
+import androidx.datastore.preferences.core.edit
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.android_bootcamp.R
 import com.example.android_bootcamp.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentLoginBinding
+import com.example.android_bootcamp.datastore.PreferenceKeys
+import com.example.android_bootcamp.datastore.dataStore
+import com.example.android_bootcamp.resource.Resource
 import com.example.android_bootcamp.view_models.LoginViewModel
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 class Login : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
     private val loginViewModel: LoginViewModel by viewModels()
-
     override fun setUp() {
         super.setUp()
-
         parentFragmentManager.setFragmentResultListener(
             "REGISTER_RESULT",
             viewLifecycleOwner
@@ -25,31 +30,43 @@ class Login : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) 
             val password = bundle.getString("password")
             binding.emailId.setText(email)
             binding.passwordId.setText(password)
-        }//when we get values from register fragment we put it in the edittexts
+        }//when we get values from register fragment we put it in the edit texts
 
-        val sharedPreferences =
-            requireContext().getSharedPreferences("SessionPrefs", Context.MODE_PRIVATE)
-        val savedToken = sharedPreferences.getString("token", null)
-        val savedEmail = sharedPreferences.getString("email", null)
-        //initializing sharedPreferences to save session
 
-        if (savedToken != null && savedEmail != null) {
-            navigateToHome(savedEmail)
-        }//if its not null we go to home page and take email with us
+        viewLifecycleOwner.lifecycleScope.launch {
+            loginViewModel.loginState.collect { resource ->
+                when (resource) {
+                    is Resource.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
 
-        loginViewModel.loginResponse.observe(viewLifecycleOwner) { response ->
-            val email = binding.emailId.text.toString()
-            if (binding.checkbox.isChecked) {
-                saveSession(response.token, email)
-            }//we save session only if checkbox is checked
+                    is Resource.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.login_successful, resource.data.token),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        if (binding.checkbox.isChecked) {
+                            saveSession(resource.data.token, binding.emailId.text.toString())
+                        }
+                        navigateToHome(binding.emailId.text.toString())
+                    }
 
-            navigateToHome(email)
+                    is Resource.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                    Resource.Idle -> {
+                        //default
+                    }
+                }
+            }
         }
 
-        loginViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
-        }
-
+        readSession()
     }
 
     override fun setListeners() {
@@ -77,10 +94,8 @@ class Login : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) 
 
                 override fun afterTextChanged(s: Editable?) {}
             }
-
             emailId.addTextChangedListener(textWatcher)
             passwordId.addTextChangedListener(textWatcher)
-
             loginId.setOnClickListener {
                 val email = emailId.text.toString()
                 val password = passwordId.text.toString()
@@ -92,12 +107,12 @@ class Login : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) 
     }
 
     private fun saveSession(token: String?, email: String?) {
-        val sharedPreferences =
-            requireContext().getSharedPreferences("SessionPrefs", Context.MODE_PRIVATE)
-        sharedPreferences.edit()
-            .putString("token", token)
-            .putString("email", email)
-            .apply()
+        lifecycleScope.launch {
+            requireContext().dataStore.edit { preferences ->
+                preferences[PreferenceKeys.TOKEN] = token ?: ""
+                preferences[PreferenceKeys.EMAIL] = email ?: ""
+            }
+        }
     }
 
     private fun navigateToHome(email: String) {
@@ -106,6 +121,24 @@ class Login : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) 
             .setPopUpTo(R.id.login, true)
             .build()
         findNavController().navigate(action, navOptions)
+    }
+
+    private fun readSession() {
+        lifecycleScope.launch {
+            requireContext().dataStore.data
+                .map { preferences ->
+                    val token = preferences[PreferenceKeys.TOKEN]
+                    val email = preferences[PreferenceKeys.EMAIL]
+                    Pair(token, email) // Return the token and email as a pair
+                }
+                .collect { userData ->
+                    val (savedToken, savedEmail) = userData
+                    // If token and email are not null, navigate to Home
+                    if (savedToken != null && savedEmail != null) {
+                        navigateToHome(savedEmail)
+                    }
+                }
+        }
     }
 
     private fun String.isValidEmail(): Boolean {

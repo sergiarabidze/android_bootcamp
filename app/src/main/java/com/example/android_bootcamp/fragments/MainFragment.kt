@@ -1,11 +1,15 @@
 package com.example.android_bootcamp.fragments
 
-import android.content.Context
+import androidx.datastore.preferences.core.edit
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navOptions
 import com.example.android_bootcamp.R
 import com.example.android_bootcamp.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentMainFragmentBinding
+import com.example.android_bootcamp.datastore.dataStore
+import kotlinx.coroutines.launch
 
 class MainFragment :
     BaseFragment<FragmentMainFragmentBinding>(FragmentMainFragmentBinding::inflate) {
@@ -18,20 +22,32 @@ class MainFragment :
             emailId.text = args.email
 
             logOutId.setOnClickListener {
-                clearSessionAndNavigateToLogin()
+                clearSession()
+            }
+            usersBtnId.setOnClickListener {
+                findNavController().navigate(R.id.usersFragment)
             }
         }
     }
 
-    private fun clearSessionAndNavigateToLogin() {
-        val sharedPreferences =
-            requireContext().getSharedPreferences("SessionPrefs", Context.MODE_PRIVATE)
-        sharedPreferences.edit().clear().apply()//we clear session
+    private fun clearSession() {
+       val job =  lifecycleScope.launch {
+            requireContext().dataStore.edit { preferences ->
+                preferences.clear()
+            }
+        }
+        job.invokeOnCompletion {
+            navigateToLogin()
+        }
+    }
 
-        findNavController().navigate(MainFragmentDirections.actionMainFragmentToLogin())
-        findNavController().popBackStack(
-            R.id.login,
-            false
-        )//pop this fragment from backstack and go to login fragment
+    private fun navigateToLogin() {
+        val navController = findNavController()
+        val navOptions = navOptions {
+            popUpTo(R.id.mainFragment) {
+                inclusive = true
+            }
+        }
+        navController.navigate(R.id.login, null, navOptions)
     }
 }

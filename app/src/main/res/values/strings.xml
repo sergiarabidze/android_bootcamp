@@ -11,4 +11,12 @@
     <string name="remember_me">Remember me</string>
     <string name="repeat_password">Repeat password</string>
     <string name="log_out">Log out</string>
+    <string name="users">Users</string>
+    <string name="others_profiles">Others\' profiles</string>
+    <string name="fullname">%1$s %2$s</string>
+    <string name="login_successful">Login Successful: %1$s</string>
+    <string name="registration_failed">Registration failed: %1$s</string>
+    <string name="registration_successful">Registration successful</string>
+    <string name="passwords_do_not_match">Passwords do not match</string>
+    <string name="please_fill_in_all_fields">Please fill in all fields</string>
 </resources>

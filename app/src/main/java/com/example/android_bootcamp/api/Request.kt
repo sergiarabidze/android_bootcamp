@@ -18,4 +18,6 @@ data class ResponseRegister(
     val id : String,
     val token : String
 )
+
+
 //data classes for login and register response and request
