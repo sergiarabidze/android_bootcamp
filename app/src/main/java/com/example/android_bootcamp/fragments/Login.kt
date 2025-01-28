@@ -14,6 +14,7 @@ import com.example.android_bootcamp.datastore.PreferenceKeys
 import com.example.android_bootcamp.datastore.dataStore
 import com.example.android_bootcamp.resource.Resource
 import com.example.android_bootcamp.view_models.LoginViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -65,7 +66,6 @@ class Login : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) 
                 }
             }
         }
-
         readSession()
     }
 
@@ -107,7 +107,7 @@ class Login : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) 
     }
 
     private fun saveSession(token: String?, email: String?) {
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.IO) {
             requireContext().dataStore.edit { preferences ->
                 preferences[PreferenceKeys.TOKEN] = token ?: ""
                 preferences[PreferenceKeys.EMAIL] = email ?: ""

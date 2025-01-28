@@ -21,26 +21,27 @@
     />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_id"
-        android:layout_marginTop="22dp"
-        android:layout_marginHorizontal="12dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:id="@+id/recycler_id"
-        android:visibility="invisible"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="20dp"
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_id"
+        android:layout_marginBottom="120dp"/>
+
     <ProgressBar
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/progress_bar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_id"
+        app:layout_constraintTop_toBottomOf="@id/recycler_id"
+        android:visibility="invisible"/>
 
-        />
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,6 +50,5 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="25dp"
         android:src="@drawable/backarrow"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,6 +43,7 @@ android {
 
 
 dependencies {
+    implementation(libs.androidx.paging.runtime)
     implementation (libs.glide)
     annotationProcessor (libs.compiler)
     implementation(libs.androidx.datastore.preferences)

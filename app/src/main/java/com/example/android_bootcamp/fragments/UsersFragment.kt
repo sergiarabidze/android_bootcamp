@@ -1,56 +1,49 @@
 package com.example.android_bootcamp.fragments
 
-
-import android.view.View
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.android_bootcamp.api.User
+import androidx.paging.LoadState
 import com.example.android_bootcamp.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentUsersBinding
 import com.example.android_bootcamp.recycler.UsersAdapter
-import com.example.android_bootcamp.resource.Resource
 import com.example.android_bootcamp.view_models.UsersViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::inflate) {
-    private val registerViewModel: UsersViewModel by viewModels()
-
+    private val viewModel: UsersViewModel by viewModels()
+    private lateinit var userAdapter: UsersAdapter
     override fun setUp() {
         super.setUp()
+        userAdapter = UsersAdapter()
+        binding.recyclerId.adapter = userAdapter
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            registerViewModel.usersResponse.collect { usersResponse ->
-                when(usersResponse){
-                    is Resource.Loading ->
-                        binding.progressBar.visibility = View.VISIBLE
-
-                    is Resource.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(context, usersResponse.message, Toast.LENGTH_SHORT).show()
-                    }
-
-                    is Resource.Success ->{
-                        binding.progressBar.visibility = View.GONE
-                        binding.recyclerId.visibility = View.VISIBLE
-                        val users = usersResponse.data.data
-                        val adapter = UsersAdapter(users)
-                        binding.recyclerId.adapter = adapter
-                    }
-
-                    Resource.Idle -> {
-                        //default
-                    }
-                }
+        lifecycleScope.launch(Dispatchers.IO) {
+            viewModel.usersFlow.collectLatest { pagingData ->
+                userAdapter.submitData(pagingData)
             }
         }
-        registerViewModel.fetchUsers(page = 1)
+
+        lifecycleScope.launch {
+            userAdapter.loadStateFlow.collect { loadStates ->
+                val isLoading = loadStates.refresh is LoadState.Loading ||
+                        loadStates.append is LoadState.Loading
+
+                val isEndReached = loadStates.refresh is LoadState.NotLoading &&
+                        loadStates.append.endOfPaginationReached
+
+                binding.progressBar.isVisible = isLoading && !isEndReached
+            }
+        }
     }
+
 
     override fun setListeners() {
         super.setListeners()
-        binding.backArrowId.setOnClickListener{
+        binding.backArrowId.setOnClickListener {
             findNavController().popBackStack()
         }
     }

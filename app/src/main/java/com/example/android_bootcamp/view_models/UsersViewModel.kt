@@ -1,32 +1,23 @@
 package com.example.android_bootcamp.view_models
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.android_bootcamp.api.ApiResponse
-
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.example.android_bootcamp.api.RetrofitInstance
-import com.example.android_bootcamp.resource.Resource
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
+import com.example.android_bootcamp.api.User
+import com.example.android_bootcamp.paging.UserPagingSource
+import kotlinx.coroutines.flow.Flow
+
 
 class UsersViewModel : ViewModel() {
-    private val _usersResponse = MutableStateFlow<Resource<ApiResponse>>(Resource.Idle)
-    val usersResponse get() = _usersResponse
-    fun fetchUsers(page: Int) {
-        _usersResponse.value = Resource.Loading
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val response = RetrofitInstance.api.getUsers(page)
-                if (response.isSuccessful){
-                    _usersResponse.value = Resource.Success(response.body()!!)
-                }else{
-                    _usersResponse.value = Resource.Error("Error: ${response.code()}")
-                }
 
-            } catch (e: Exception) {
-                _usersResponse.value = Resource.Error(e.message ?: "Unknown error")
-            }
-        }
-    }
+    val usersFlow: Flow<PagingData<User>> = Pager(
+        config = PagingConfig(
+            pageSize = 6,
+            enablePlaceholders = false,
+            prefetchDistance = 1
+        ),
+        pagingSourceFactory = { UserPagingSource(RetrofitInstance.api) }
+    ).flow
 }
