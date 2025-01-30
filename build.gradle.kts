@@ -3,8 +3,9 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
     kotlin("plugin.serialization") version "2.1.0"
-
+    id ("com.google.protobuf") version "0.9.4" apply false
 }
+
 buildscript {
     repositories {
         google()

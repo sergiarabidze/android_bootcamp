@@ -1,4 +1,5 @@
-package com.example.android_bootcamp
+package com.example.android_bootcamp.base
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

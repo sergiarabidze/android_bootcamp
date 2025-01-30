@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/payment"
-        android:name="com.example.android_bootcamp.MainFragment"
+        android:name="com.example.android_bootcamp.fragments.MainFragment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_main_fragment" >
     </fragment>
