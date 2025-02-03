@@ -2,4 +2,13 @@
     <string name="app_name">android_bootcamp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_user">Add User</string>
+    <string name="delete_user">Delete User</string>
+    <string name="age">Age: %1$s</string>
+    <string name="name">name</string>
+    <string name="last_name">last name</string>
+    <string name="Age">age</string>
+    <string name="fullname">%1$s %2$s</string>
+    <string name="you_are_online">you are online</string>
+    <string name="you_are_offline">you are offline</string>
 </resources>

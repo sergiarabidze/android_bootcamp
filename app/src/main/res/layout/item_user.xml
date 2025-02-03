@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:layout_margin="8dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center"
+        android:id="@+id/avatar_id"
+        android:src="@color/black"
+        android:layout_marginTop="12dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:id="@+id/name_id"
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/about_id"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:maxLines="3"
+        android:ellipsize="end"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/activity_status"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="12dp"
+        />
+
+</LinearLayout>
