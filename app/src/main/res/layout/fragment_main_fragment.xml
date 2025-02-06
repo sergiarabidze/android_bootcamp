@@ -1,14 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".pasword.presentation.MainFragment"
+    android:background="@color/light">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/yellow_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/green_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="48dp"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_id"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/security_screen"
+        android:textStyle="bold"
+        android:layout_marginTop="64dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/enter_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_id"
+        android:text="@string/enter_your_passcode"
+        android:layout_marginTop="48dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dots_id"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/enter_password"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dot1"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/grey" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dot2"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/grey" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dot3"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/grey" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dot4"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/grey" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:rowCount="4"
+        android:columnCount="3"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:padding="16dp"
+        android:layout_gravity="center"
+        android:background="@color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dots_id"
+        >
 
-</FrameLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/_1"
+            android:id="@+id/button_1"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="21dp"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_button"
+            android:textSize="24sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/_2"
+            android:id="@+id/button_2"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="21dp"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_button"
+            android:textSize="24sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/_3"
+            android:id="@+id/button_3"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="21dp"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_button"
+            android:textSize="24sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/_4"
+            android:id="@+id/button_4"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="21dp"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_button"
+            android:textSize="24sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/_5"
+            android:id="@+id/button_5"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="21dp"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_button"
+            android:textSize="24sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/_6"
+            android:id="@+id/button_6"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="21dp"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_button"
+            android:textSize="24sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/_7"
+            android:id="@+id/button_7"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="21dp"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_button"
+            android:textSize="24sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/_8"
+            android:id="@+id/button_8"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="21dp"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_button"
+            android:textSize="24sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/_9"
+            android:id="@+id/button_9"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="21dp"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_button"
+            android:textSize="24sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:drawableStart="@drawable/touch"
+            android:paddingStart="18dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="21dp"
+            android:background="@drawable/rounded_button"
+            android:textSize="24sp"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/_0"
+            android:id="@+id/button_0"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="21dp"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_button"
+            android:textSize="24sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:drawableStart="@drawable/delete"
+            android:id="@+id/button_delete"
+            android:paddingStart="24dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="21dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/white"
+            android:textSize="24sp"/>
+    </GridLayout>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="40dp"
+        android:text="@string/forgot_password"
+        android:textSize="16sp"
+        android:textColor="@color/gray"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
