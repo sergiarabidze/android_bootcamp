@@ -3,7 +3,9 @@ package com.example.android_bootcamp.pasword.presentation
 
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.android_bootcamp.base.BaseFragment
 import com.example.android_bootcamp.R
 import com.example.android_bootcamp.databinding.FragmentMainFragmentBinding
@@ -61,17 +63,23 @@ class MainFragment :
 
     private fun observePasscodeResult() {
         viewLifecycleOwner.lifecycleScope.launch {
-            passcodeViewModel.passcodeResult.collectLatest { result ->
-                result?.let {
-                    if (it == "Success") {
-                        Toast.makeText(requireContext(),
-                            getString(R.string.success), Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(requireContext(),
-                            getString(R.string.incorrect_passcode), Toast.LENGTH_SHORT)
-                            .show()
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                passcodeViewModel.passcodeResult.collectLatest { result ->
+                    result?.let {
+                        if (it == "Success") {
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.success), Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.incorrect_passcode), Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                        passcodeViewModel.clearPasscode()
                     }
-                    passcodeViewModel.clearPasscode()
                 }
             }
         }
