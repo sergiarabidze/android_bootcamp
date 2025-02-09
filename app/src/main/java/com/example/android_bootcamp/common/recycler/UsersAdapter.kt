@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.recycler
+package com.example.android_bootcamp.common.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.paging.PagingDataAdapter
 import com.bumptech.glide.Glide
 import com.example.android_bootcamp.R
-import com.example.android_bootcamp.api.User
+import com.example.android_bootcamp.remote.api.serializable_classes.User
 import com.example.android_bootcamp.databinding.UserItemBinding
 
 class UsersAdapter : PagingDataAdapter<User, UsersAdapter.UserViewHolder>(USER_COMPARATOR) {

@@ -1,9 +1,9 @@
-package com.example.android_bootcamp.paging
+package com.example.android_bootcamp.remote.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.android_bootcamp.api.ServiceApi
-import com.example.android_bootcamp.api.User
+import com.example.android_bootcamp.remote.api.ServiceApi
+import com.example.android_bootcamp.remote.api.serializable_classes.User
 
 class UserPagingSource(
     private val serviceApi: ServiceApi

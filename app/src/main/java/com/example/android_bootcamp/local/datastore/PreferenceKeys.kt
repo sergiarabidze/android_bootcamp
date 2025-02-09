@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.datastore
+package com.example.android_bootcamp.local.datastore
 
 import androidx.datastore.preferences.core.stringPreferencesKey
 

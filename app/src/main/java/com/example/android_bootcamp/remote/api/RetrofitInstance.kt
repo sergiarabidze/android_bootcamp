@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.api
+package com.example.android_bootcamp.remote.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

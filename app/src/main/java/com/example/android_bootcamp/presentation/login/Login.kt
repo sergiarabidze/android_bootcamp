@@ -1,3 +1,5 @@
+package com.example.android_bootcamp.presentation.login
+
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -8,12 +10,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.android_bootcamp.R
-import com.example.android_bootcamp.base.BaseFragment
+import com.example.android_bootcamp.common.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentLoginBinding
-import com.example.android_bootcamp.datastore.PreferenceKeys
-import com.example.android_bootcamp.datastore.dataStore
-import com.example.android_bootcamp.resource.Resource
-import com.example.android_bootcamp.view_models.LoginViewModel
+import com.example.android_bootcamp.local.datastore.PreferenceKeys
+import com.example.android_bootcamp.local.datastore.dataStore
+import com.example.android_bootcamp.remote.httpRequest.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -32,7 +33,6 @@ class Login : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) 
             binding.emailId.setText(email)
             binding.passwordId.setText(password)
         }//when we get values from register fragment we put it in the edit texts
-
 
         viewLifecycleOwner.lifecycleScope.launch {
             loginViewModel.loginState.collect { resource ->
@@ -129,11 +129,11 @@ class Login : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) 
                 .map { preferences ->
                     val token = preferences[PreferenceKeys.TOKEN]
                     val email = preferences[PreferenceKeys.EMAIL]
-                    Pair(token, email) // Return the token and email as a pair
+                    Pair(token, email) //return the token and email as a pair
                 }
                 .collect { userData ->
                     val (savedToken, savedEmail) = userData
-                    // If token and email are not null, navigate to Home
+                    //if token and email are not null, navigate to Home
                     if (savedToken != null && savedEmail != null) {
                         navigateToHome(savedEmail)
                     }

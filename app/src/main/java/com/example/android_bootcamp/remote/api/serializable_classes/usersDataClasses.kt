@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.api
+package com.example.android_bootcamp.remote.api.serializable_classes
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.SerialName

@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.fragments
+package com.example.android_bootcamp.presentation.main
 
 import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.lifecycleScope
@@ -6,9 +6,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navOptions
 import com.example.android_bootcamp.R
-import com.example.android_bootcamp.base.BaseFragment
+import com.example.android_bootcamp.common.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentMainFragmentBinding
-import com.example.android_bootcamp.datastore.dataStore
+import com.example.android_bootcamp.local.datastore.dataStore
 import kotlinx.coroutines.launch
 
 class MainFragment :

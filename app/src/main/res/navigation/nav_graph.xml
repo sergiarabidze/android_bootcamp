@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/register"
-        android:name="com.example.android_bootcamp.fragments.Register"
+        android:name="com.example.android_bootcamp.presentation.register.Register"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/login"
-        android:name="Login"
+        android:name="com.example.android_bootcamp.presentation.login.Login"
         android:label="Login" >
         <action
             android:id="@+id/action_login_to_register"
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.android_bootcamp.fragments.MainFragment"
+        android:name="com.example.android_bootcamp.presentation.main.MainFragment"
         android:label="fragment_main_fragment"
         tools:layout="@layout/fragment_main_fragment" >
         <argument
@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/usersFragment"
-        android:name="com.example.android_bootcamp.fragments.UsersFragment"
+        android:name="com.example.android_bootcamp.presentation.users.UsersFragment"
         android:label="fragment_users"
         tools:layout="@layout/fragment_users" />
 

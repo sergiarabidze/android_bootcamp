@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.fragments
+package com.example.android_bootcamp.presentation.register
 
 import android.view.View
 import android.widget.Toast
@@ -8,10 +8,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.android_bootcamp.R
-import com.example.android_bootcamp.base.BaseFragment
+import com.example.android_bootcamp.common.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentRegisterBinding
-import com.example.android_bootcamp.resource.Resource
-import com.example.android_bootcamp.view_models.RegisterViewModel
+import com.example.android_bootcamp.remote.httpRequest.Resource
 import kotlinx.coroutines.launch
 
 class Register : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {

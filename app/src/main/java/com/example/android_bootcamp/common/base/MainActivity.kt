@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.base
+package com.example.android_bootcamp.common.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

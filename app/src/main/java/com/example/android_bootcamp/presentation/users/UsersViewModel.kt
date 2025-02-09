@@ -1,12 +1,12 @@
-package com.example.android_bootcamp.view_models
+package com.example.android_bootcamp.presentation.users
 
 import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.android_bootcamp.api.RetrofitInstance
-import com.example.android_bootcamp.api.User
-import com.example.android_bootcamp.paging.UserPagingSource
+import com.example.android_bootcamp.remote.api.RetrofitInstance
+import com.example.android_bootcamp.remote.api.serializable_classes.User
+import com.example.android_bootcamp.remote.paging.UserPagingSource
 import kotlinx.coroutines.flow.Flow
 
 

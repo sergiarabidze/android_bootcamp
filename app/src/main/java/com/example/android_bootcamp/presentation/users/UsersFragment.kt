@@ -1,14 +1,13 @@
-package com.example.android_bootcamp.fragments
+package com.example.android_bootcamp.presentation.users
 
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import com.example.android_bootcamp.base.BaseFragment
+import com.example.android_bootcamp.common.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentUsersBinding
-import com.example.android_bootcamp.recycler.UsersAdapter
-import com.example.android_bootcamp.view_models.UsersViewModel
+import com.example.android_bootcamp.common.recycler.UsersAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
