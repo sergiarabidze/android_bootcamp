@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("androidx.navigation.safeargs")
     kotlin("plugin.serialization") version "2.1.0"
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -39,10 +40,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
 
 
 dependencies {
+    implementation (libs.androidx.room.paging)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.paging.runtime)
     implementation (libs.glide)
     annotationProcessor (libs.compiler)

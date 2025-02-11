@@ -8,20 +8,24 @@ import androidx.paging.LoadState
 import com.example.android_bootcamp.common.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentUsersBinding
 import com.example.android_bootcamp.common.recycler.UsersAdapter
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+
+
 class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::inflate) {
+
     private val viewModel: UsersViewModel by viewModels()
     private lateinit var userAdapter: UsersAdapter
+
     override fun setUp() {
         super.setUp()
+
         userAdapter = UsersAdapter()
         binding.recyclerId.adapter = userAdapter
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            viewModel.usersFlow.collectLatest { pagingData ->
+        lifecycleScope.launch {
+            viewModel.userPagingDataFlow.collectLatest { pagingData ->
                 userAdapter.submitData(pagingData)
             }
         }
@@ -38,7 +42,6 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::i
             }
         }
     }
-
 
     override fun setListeners() {
         super.setListeners()

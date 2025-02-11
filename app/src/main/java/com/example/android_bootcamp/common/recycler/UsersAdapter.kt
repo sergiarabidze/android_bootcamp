@@ -2,27 +2,27 @@ package com.example.android_bootcamp.common.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.paging.PagingDataAdapter
 import com.bumptech.glide.Glide
 import com.example.android_bootcamp.R
-import com.example.android_bootcamp.remote.api.serializable_classes.User
 import com.example.android_bootcamp.databinding.UserItemBinding
+import com.example.android_bootcamp.local.room.UserEntity
 
-class UsersAdapter : PagingDataAdapter<User, UsersAdapter.UserViewHolder>(USER_COMPARATOR) {
+class UsersAdapter : PagingDataAdapter<UserEntity, UsersAdapter.UserViewHolder>(USER_COMPARATOR) {
 
     inner class UserViewHolder(private val binding: UserItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(user: User) {
-            binding.emailId.text = user.email
+        fun onBind(userEntity: UserEntity) {
+            binding.emailId.text = userEntity.email
             binding.fullNameId.text =
-                binding.root.context.getString(R.string.fullname, user.firstName, user.lastName)
+                binding.root.context.getString(R.string.fullname, userEntity.firstName, userEntity.lastName)
 
             with(binding.root.context) {
                 Glide.with(this)
-                    .load(user.avatar)
+                    .load(userEntity.avatar)
                     .into(binding.imageId)
             }
         }
@@ -38,20 +38,19 @@ class UsersAdapter : PagingDataAdapter<User, UsersAdapter.UserViewHolder>(USER_C
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val user = getItem(position)
-        user?.let { holder.onBind(it) }
+        val userEntity = getItem(position)
+        userEntity?.let { holder.onBind(it) }
     }
 
     companion object {
-        private val USER_COMPARATOR = object : DiffUtil.ItemCallback<User>() {
-            override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+        private val USER_COMPARATOR = object : DiffUtil.ItemCallback<UserEntity>() {
+            override fun areItemsTheSame(oldItem: UserEntity, newItem: UserEntity): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+            override fun areContentsTheSame(oldItem: UserEntity, newItem: UserEntity): Boolean {
                 return oldItem == newItem
             }
         }
     }
 }
-
