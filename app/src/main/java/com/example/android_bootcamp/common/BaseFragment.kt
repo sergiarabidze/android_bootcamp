@@ -1,12 +1,13 @@
-package com.example.android_bootcamp
+package com.example.android_bootcamp.common
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
+
 
 abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) : Fragment() {
 
