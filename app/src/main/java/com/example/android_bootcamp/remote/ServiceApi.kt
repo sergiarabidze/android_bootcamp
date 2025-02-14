@@ -4,6 +4,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 
     interface ServiceApi {
-        @GET("v3/f3f41821-7434-471f-9baa-ae3dee984e6d")
-        suspend fun getUsers(): Response<Int>
+        @GET("v3/6dffd14a-836f-4566-b024-bd41ace3a874")
+        suspend fun getPlaces(): Response<List<Place>>
     }
