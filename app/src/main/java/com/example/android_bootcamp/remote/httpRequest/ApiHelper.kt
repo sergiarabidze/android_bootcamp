@@ -4,7 +4,7 @@ import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
 
-object ApiHelper{
+class ApiHelper{
     suspend fun <T> handleHttpRequest ( apiCall : suspend () -> Response<T>): Resource<T> {
         val response = apiCall.invoke()
         return try{

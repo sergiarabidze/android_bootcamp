@@ -4,6 +4,8 @@ plugins {
     id("androidx.navigation.safeargs")
     kotlin("plugin.serialization") version "2.1.0"
     id("com.google.devtools.ksp")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -45,6 +47,8 @@ android {
 
 
 dependencies {
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
     implementation (libs.androidx.room.paging)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
@@ -68,4 +72,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+kapt {
+    correctErrorTypes = true
 }

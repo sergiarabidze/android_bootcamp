@@ -11,8 +11,9 @@ import com.example.android_bootcamp.R
 import com.example.android_bootcamp.common.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentRegisterBinding
 import com.example.android_bootcamp.remote.httpRequest.Resource
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
+@AndroidEntryPoint
 class Register : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
     private val registerViewModel: RegisterViewModel by viewModels()
     override fun setListeners() {

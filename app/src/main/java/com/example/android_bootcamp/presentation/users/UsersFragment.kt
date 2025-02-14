@@ -1,5 +1,6 @@
 package com.example.android_bootcamp.presentation.users
 
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -8,11 +9,13 @@ import androidx.paging.LoadState
 import com.example.android_bootcamp.common.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentUsersBinding
 import com.example.android_bootcamp.common.recycler.UsersAdapter
+import com.example.android_bootcamp.helper.NetworkUtils
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
-
+@AndroidEntryPoint
 class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::inflate) {
 
     private val viewModel: UsersViewModel by viewModels()
@@ -20,6 +23,11 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::i
 
     override fun setUp() {
         super.setUp()
+        if (NetworkUtils.isInternetAvailable(context = requireContext())){
+            Toast.makeText(requireContext(),"you are online",Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(requireContext(),"you are offline",Toast.LENGTH_SHORT).show()
+        }
 
         userAdapter = UsersAdapter()
         binding.recyclerId.adapter = userAdapter
