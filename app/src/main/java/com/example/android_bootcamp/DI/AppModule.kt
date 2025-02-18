@@ -5,7 +5,6 @@ import androidx.room.Room
 import com.example.android_bootcamp.local.UserDao
 import com.example.android_bootcamp.local.UserDataBase
 import com.example.android_bootcamp.remote.ServiceApi
-import com.example.android_bootcamp.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,13 +21,15 @@ object AppModule {
     @Provides
     @Singleton
     fun provideMyApi() : ServiceApi {
-         val BASE_URL : String = "https://run.mocky.io/"
+         val baseUrl : String = "https://run.mocky.io/"
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ServiceApi::class.java)
     }
+
+
 
     private const val DATABASE_NAME = "user_database"
 
@@ -46,11 +47,5 @@ object AppModule {
     @Singleton
     fun provideUserDao(database: UserDataBase): UserDao {
         return database.userDao()
-    }
-
-    @Provides
-    @Singleton
-    fun provideRepository(serviceApi : ServiceApi,userDao :UserDao):UserRepository {
-        return UserRepository(serviceApi = serviceApi, userDao = userDao)
     }
 }
