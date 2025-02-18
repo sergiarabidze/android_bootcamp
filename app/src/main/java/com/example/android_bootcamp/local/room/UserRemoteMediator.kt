@@ -1,4 +1,5 @@
 package com.example.android_bootcamp.local.room
+import android.util.Log.d
 import androidx.paging.*
 import androidx.room.withTransaction
 import com.example.android_bootcamp.helper.toEntity
@@ -25,9 +26,11 @@ class UserRemoteMediator(
                     if (lastItem == null) {
                         1
                     } else {
-                        (lastItem.id / state.config.pageSize) + 1
+                        val nextPage = (lastItem.id / state.config.pageSize) + 1
+                        nextPage
                     }
                 }
+
             }
 
             val response = apiService.getUsers(page)
@@ -44,9 +47,9 @@ class UserRemoteMediator(
                 }
             }
 
-            return MediatorResult.Success(endOfPaginationReached = page >= (response.body()?.totalPages
-                ?: 0)
-            )
+            val isLastPage = users.isNullOrEmpty()
+            return MediatorResult.Success(endOfPaginationReached = isLastPage)
+
 
         } catch (e: IOException) {
             return MediatorResult.Error(e)

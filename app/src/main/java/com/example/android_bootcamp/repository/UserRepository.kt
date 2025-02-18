@@ -21,7 +21,9 @@ class UserRepository @Inject constructor(
     @OptIn(ExperimentalPagingApi::class)
     fun getUsersPagingDataFlow(): Flow<PagingData<UserEntity>> {
         return Pager(
-            config = PagingConfig(pageSize = 5, enablePlaceholders = false),
+            config = PagingConfig( pageSize = 6,
+                initialLoadSize = 10,
+                enablePlaceholders = false),
             remoteMediator = UserRemoteMediator(serviceApi, database),
             pagingSourceFactory = { userDao.getAllUsers() }
         ).flow

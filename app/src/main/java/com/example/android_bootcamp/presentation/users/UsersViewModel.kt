@@ -14,9 +14,6 @@ import javax.inject.Inject
 class UsersViewModel@Inject constructor(
     userRepository: UserRepository
 ) : ViewModel() {
-
-
-
     val userPagingDataFlow: Flow<PagingData<UserEntity>> =userRepository.getUsersPagingDataFlow()
 
 }

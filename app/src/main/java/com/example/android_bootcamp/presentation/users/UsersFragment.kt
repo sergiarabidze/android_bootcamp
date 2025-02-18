@@ -11,6 +11,7 @@ import com.example.android_bootcamp.databinding.FragmentUsersBinding
 import com.example.android_bootcamp.common.recycler.UsersAdapter
 import com.example.android_bootcamp.helper.NetworkUtils
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -23,6 +24,7 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::i
 
     override fun setUp() {
         super.setUp()
+
         if (NetworkUtils.isInternetAvailable(context = requireContext())){
             Toast.makeText(requireContext(),"you are online",Toast.LENGTH_SHORT).show()
         }else{
@@ -32,13 +34,13 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(FragmentUsersBinding::i
         userAdapter = UsersAdapter()
         binding.recyclerId.adapter = userAdapter
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             viewModel.userPagingDataFlow.collectLatest { pagingData ->
                 userAdapter.submitData(pagingData)
             }
         }
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             userAdapter.loadStateFlow.collect { loadStates ->
                 val isLoading = loadStates.refresh is LoadState.Loading ||
                         loadStates.append is LoadState.Loading
