@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background_start">#22343C</color>
+    <color name="background_end">#1F2E35</color>
+    <color name="post_color">#30444E</color>
+    <color name="date_text_color">#96A7AF</color>
+    <color name="line_color">#B8C2C0</color>
+    <color name="commentator_background">#3ED598</color>
+    <color name="edit_text">#2A3C44</color>
+    <color name="tint_color">#96A7AF</color>
 </resources>

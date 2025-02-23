@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/round_corners"
+    android:layout_marginHorizontal="9dp"
+    >
+    
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/image_id"
+        android:alpha="0.9"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/RoundImageShape"
+        tools:src="@color/black"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_id"
+        android:fontFamily="@font/fira_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="26dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        tools:text="like tu proeqtistvis dro gyofnis"
+        />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
