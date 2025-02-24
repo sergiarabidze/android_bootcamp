@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.remote
+package com.example.android_bootcamp.data.remote
 
 import retrofit2.Response
 import retrofit2.http.GET

@@ -1,6 +1,6 @@
-package com.example.android_bootcamp.repository
+package com.example.android_bootcamp.data.repository
 
-import com.example.android_bootcamp.local.UserEntity
+import com.example.android_bootcamp.data.local.UserEntity
 import retrofit2.Response
 
 interface UserRepository {

@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.local
+package com.example.android_bootcamp.data.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

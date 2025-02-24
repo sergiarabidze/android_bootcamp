@@ -1,7 +1,7 @@
 package com.example.android_bootcamp.DI
 
-import com.example.android_bootcamp.repository.UserRepository
-import com.example.android_bootcamp.repository.UserRepositoryImpl
+import com.example.android_bootcamp.data.repository.UserRepository
+import com.example.android_bootcamp.data.repository.UserRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

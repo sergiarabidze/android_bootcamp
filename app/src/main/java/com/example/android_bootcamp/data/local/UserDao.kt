@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.local
+package com.example.android_bootcamp.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert

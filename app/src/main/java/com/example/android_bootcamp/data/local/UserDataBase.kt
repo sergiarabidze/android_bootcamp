@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.local
+package com.example.android_bootcamp.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

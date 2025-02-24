@@ -2,9 +2,9 @@ package com.example.android_bootcamp.DI
 
 import android.content.Context
 import androidx.room.Room
-import com.example.android_bootcamp.local.UserDao
-import com.example.android_bootcamp.local.UserDataBase
-import com.example.android_bootcamp.remote.ServiceApi
+import com.example.android_bootcamp.data.local.UserDao
+import com.example.android_bootcamp.data.local.UserDataBase
+import com.example.android_bootcamp.data.remote.ServiceApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
