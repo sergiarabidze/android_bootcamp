@@ -2,4 +2,11 @@
     <string name="app_name">android_bootcamp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="locations">Locations</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="title">Title</string>
+    <string name="address">Address</string>
+    <string name="title_text">title: %1$s</string>
+    <string name="address_text">address: %1$s</string>
 </resources>

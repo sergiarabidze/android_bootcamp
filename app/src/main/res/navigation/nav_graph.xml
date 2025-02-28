@@ -7,9 +7,23 @@
 
     <fragment
         android:id="@+id/payment"
-        android:name="com.example.android_bootcamp.presentation.main.MainFragment"
+        android:name="com.example.android_bootcamp.presentation.features.main.MainFragment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_main_fragment" >
+        <action
+            android:id="@+id/action_payment_to_locationDetails"
+            app:destination="@id/locationDetails" />
     </fragment>
+    <dialog
+        android:id="@+id/locationDetails"
+        android:name="com.example.android_bootcamp.presentation.features.bottomsheet.LocationDetails"
+        android:label="LocationDetails" >
+        <argument
+            android:name="address"
+            app:argType="string" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </dialog>
 
 </navigation>

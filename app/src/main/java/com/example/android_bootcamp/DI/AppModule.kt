@@ -1,14 +1,10 @@
 package com.example.android_bootcamp.DI
 
-import android.content.Context
-import androidx.room.Room
-import com.example.android_bootcamp.data.local.UserDao
-import com.example.android_bootcamp.data.local.UserDataBase
+
 import com.example.android_bootcamp.data.remote.ServiceApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -30,22 +26,4 @@ object AppModule {
     }
 
 
-
-    private const val DATABASE_NAME = "user_database"
-
-    @Provides
-    @Singleton
-    fun provideDatabase(@ApplicationContext context: Context): UserDataBase {
-        return Room.databaseBuilder(
-            context.applicationContext,
-            UserDataBase::class.java,
-            DATABASE_NAME
-        ).build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideUserDao(database: UserDataBase): UserDao {
-        return database.userDao()
-    }
 }
