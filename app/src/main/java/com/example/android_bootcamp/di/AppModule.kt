@@ -5,11 +5,11 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.room.Room
 import com.example.android_bootcamp.BuildConfig
-import com.example.android_bootcamp.local.datastore.dataStore
-import com.example.android_bootcamp.local.room.DataBase
-import com.example.android_bootcamp.local.room.UserDao
-import com.example.android_bootcamp.remote.api.ServiceApi
-import com.example.android_bootcamp.remote.httpRequest.ApiHelper
+import com.example.android_bootcamp.data.local.datastore.dataStore
+import com.example.android_bootcamp.data.local.room.DataBase
+import com.example.android_bootcamp.data.local.room.UserDao
+import com.example.android_bootcamp.data.remote.api.ServiceApi
+import com.example.android_bootcamp.data.remote.httpRequest.ApiHelper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
