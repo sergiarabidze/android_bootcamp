@@ -14,9 +14,8 @@ class MainViewModel @Inject constructor(
 
     fun clearSession(onComplete: () -> Unit) {
         viewModelScope.launch {
-            clearSessionUseCase
+            clearSessionUseCase()
             onComplete()
         }
     }
-
 }

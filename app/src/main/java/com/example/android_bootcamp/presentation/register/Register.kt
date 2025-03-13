@@ -15,74 +15,47 @@ import com.example.android_bootcamp.domain.model.ValidationResult
 import com.example.android_bootcamp.presentation.helper.launchCoroutine
 import com.example.android_bootcamp.presentation.helper.showToast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class Register : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
-    private val viewModel: RegisterViewModel by viewModels()
-    override fun setListeners() {
-        super.setListeners()
 
+    private val viewModel: RegisterViewModel by viewModels()
+
+    override fun setListeners() {
         with(binding) {
             registerId.setOnClickListener {
-                onRegisterClicked()
+                val email = emailId.text.toString()
+                val password = passwordId.text.toString()
+                val confirmPassword = passwordRepId.text.toString()
+                viewModel.onEvent(RegisterEvent.Submit(email, password, confirmPassword))
             }
 
             backArrowId.setOnClickListener {
-                requireActivity().onBackPressedDispatcher.onBackPressed()
+                findNavController().popBackStack()
             }
-        }
-    }
 
-    private fun onRegisterClicked() {
-        val email = binding.emailId.text.toString()
-        val password = binding.passwordId.text.toString()
-        val confirmPassword = binding.passwordRepId.text.toString()
-        viewModel.validateCredentials(email, password, confirmPassword)
+        }
     }
 
     override fun setObservers() {
+
         launchCoroutine {
-            viewModel.validationState.collect { validationResult ->
-                when (validationResult) {
-                    is ValidationResult.Success -> {
-                    }
-                    is ValidationResult.Error -> {
-                        showToast(validationResult.message)
-                    }
+            viewModel.state.collectLatest { state ->
+
+                binding.progressBar.visibility = if (state.isLoading) View.VISIBLE else View.GONE
+
+                state.validationError?.let { showToast(it) }
+                state.registrationError?.let { showToast(getString(R.string.registration_failed, it)) }
+
+                if (state.isRegistered) {
+                    showToast(getString(R.string.registration_successful))
+                    navigate()
                 }
             }
         }
-
-        launchCoroutine {
-            viewModel.registerState.collect { registerState ->
-                when (registerState) {
-                    is Resource.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                    }
-
-                    is Resource.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        showToast(
-                            getString(R.string.registration_successful)
-                        )
-                        navigate()
-                    }
-
-                    is Resource.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        showToast(getString(R.string.registration_failed, registerState.message))
-
-                    }
-                    Resource.Idle -> {
-                    }
-                }
-            }
-        }
-
-
     }
-
 
     private fun navigate() {
         val email = binding.emailId.text.toString()
@@ -94,4 +67,5 @@ class Register : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::
         findNavController().popBackStack()
     }
 }
+
 

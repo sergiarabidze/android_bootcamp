@@ -5,8 +5,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navOptions
 import com.example.android_bootcamp.R
-import com.example.android_bootcamp.presentation.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentMainFragmentBinding
+import com.example.android_bootcamp.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
