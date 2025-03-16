@@ -6,6 +6,4 @@ sealed class RegisterEvent {
         val password: String,
         val confirmPassword: String?
     ) : RegisterEvent()
-
-    data object ClearErrors : RegisterEvent()
 }

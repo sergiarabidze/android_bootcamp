@@ -46,8 +46,11 @@ class Login : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) 
             val textWatcher = object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    loginId.isEnabled = emailId.text.toString().isNotEmpty() && passwordId.text.toString().isNotEmpty()
+                    val email = emailId.text.toString()
+                    val password = passwordId.text.toString()
+                    loginViewModel.validateFields(email, password)
                 }
+
                 override fun afterTextChanged(s: Editable?) {}
             }
 
@@ -67,20 +70,22 @@ class Login : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) 
         launchCoroutine {
             loginViewModel.state.collectLatest { state ->
                 binding.progressBar.visibility = if (state.isLoading) View.VISIBLE else View.GONE
+                binding.loginId.isActivated = state.isButtonEnabled
+            }
 
-                state.validationError?.let { showToast(it) }
-
-                state.loginError?.let { showToast(it) }
-                if (state.isLoggedIn && state.email != null) {
-                    if(state.successFullLogIn) {
-                        showToast(getString(R.string.login_successful, state.token))
+        }
+        launchCoroutine {
+            loginViewModel.eventFlow.collectLatest { event ->
+                when (event) {
+                    is LoginUiEvent.NavigateToHome -> {
+                        navigateToHome(event.email)
                     }
-                    navigateToHome(state.email)
+                    is LoginUiEvent.ShowError -> {
+                        showToast(event.message)
+                    }
                 }
-
             }
         }
-
     }
 
     private fun navigateToHome(email: String) {
@@ -89,6 +94,7 @@ class Login : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) 
             .setPopUpTo(R.id.login, true)
             .build()
         findNavController().navigate(action, navOptions)
+        findNavController().popBackStack()
     }
 
 }

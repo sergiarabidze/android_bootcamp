@@ -8,6 +8,6 @@ class ClearSessionUseCase @Inject constructor(
     private val dataStoreRepository: DataStoreRepository
 ) {
     suspend operator fun invoke() {
-        dataStoreRepository.clearSession()
+        dataStoreRepository.clear()
     }
 }

@@ -18,48 +18,49 @@ class RegisterViewModel @Inject constructor(
     private val registerUserUseCase: RegisterUserUseCase
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(RegisterState())
-    val state: StateFlow<RegisterState> get() = _state
+    private val _uiState = MutableStateFlow(RegisterState())
+    val uiState: StateFlow<RegisterState> get() = _uiState
+
+    private val _eventFlow = MutableStateFlow<RegisterUiEvent?>(null)
+    val eventFlow: StateFlow<RegisterUiEvent?> get() = _eventFlow
 
     fun onEvent(event: RegisterEvent) {
         when (event) {
-            is RegisterEvent.Submit -> {
-                handleRegistration(event.email, event.password, event.confirmPassword)
-            }
-            is RegisterEvent.ClearErrors -> {
-                _state.value = _state.value.copy(
-                    validationError = null,
-                    registrationError = null
-                )
-            }
+            is RegisterEvent.Submit -> registerUser(event.email, event.password, event.confirmPassword)
+
         }
     }
 
-    private fun handleRegistration(email: String, password: String, confirmPassword: String?) {
+    private fun registerUser(email: String, password: String, confirmPassword: String?) {
         viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(isLoading = true)
+
             val validationResult = validateEmailAndPasswordUseCase(email, password, confirmPassword)
             if (validationResult is ValidationResult.Error) {
-                _state.value = _state.value.copy(
-                    validationError = validationResult.message,
-                    isLoading = false
-                )
+                _uiState.value = _uiState.value.copy(validationError = validationResult.message , isLoading = false)
+                _eventFlow.value = RegisterUiEvent.ShowError(validationResult.message)
                 return@launch
             }
 
-            _state.value = _state.value.copy(isLoading = true, validationError = null)
-            val result = registerUserUseCase(email, password)
-            _state.value = when (result) {
-                is Resource.Success -> _state.value.copy(
-                    isLoading = false,
-                    isRegistered = true,
-                    registrationError = null
-                )
-                is Resource.Error -> _state.value.copy(
-                    isLoading = false,
-                    registrationError = result.message
-                )
-                else -> _state.value.copy(isLoading = false)
+            when (val result = registerUserUseCase(email, password)) {
+                is Resource.Success -> {
+                    _uiState.value = _uiState.value.copy(isRegistered = true)
+                    _eventFlow.value = RegisterUiEvent.NavigateToHome
+                }
+                is Resource.Error -> {
+                    _uiState.value = _uiState.value.copy(registrationError = result.message , isLoading = false)
+                    _eventFlow.value = RegisterUiEvent.ShowError(result.message)
+                }
+
+                Resource.Idle ->{
+
+                }
+
+                Resource.Loading ->{
+                    _uiState.value = _uiState.value.copy(isLoading = true)
+                }
             }
         }
     }
 }
+

@@ -6,6 +6,9 @@ import com.example.android_bootcamp.data.remote.api.serializable_classes.Respons
 import com.example.android_bootcamp.data.remote.api.serializable_classes.ResponseRegister
 import com.example.android_bootcamp.data.remote.httpRequest.ApiHelper
 import com.example.android_bootcamp.data.remote.httpRequest.Resource
+import com.example.android_bootcamp.data.remote.httpRequest.map
+import com.example.android_bootcamp.domain.model.LoginDomain
+import com.example.android_bootcamp.domain.model.mapper.toDomainModel
 import com.example.android_bootcamp.domain.repository.AuthRepository
 import javax.inject.Inject
 
@@ -14,10 +17,12 @@ class AuthRepositoryImpl @Inject constructor(
     private val serviceApi: ServiceApi
 ) : AuthRepository {
 
-    override suspend fun loginUser(email: String, password: String): Resource<ResponseLogin> {
+    override suspend fun loginUser(email: String, password: String): Resource<LoginDomain> {
         val requestLogin = Request(email, password)
         return apiHelper.handleHttpRequest {
             serviceApi.login(requestLogin)
+        }.map { responseLogin ->
+            responseLogin.toDomainModel()
         }
     }
 

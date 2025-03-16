@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.example.android_bootcamp.presentation.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentUsersBinding
-import com.example.android_bootcamp.presentation.common.recycler.UsersAdapter
+import com.example.android_bootcamp.presentation.users.model.helper.UsersAdapter
 import com.example.android_bootcamp.presentation.helper.NetworkUtils
 import com.example.android_bootcamp.presentation.helper.launchCoroutine
 import dagger.hilt.android.AndroidEntryPoint

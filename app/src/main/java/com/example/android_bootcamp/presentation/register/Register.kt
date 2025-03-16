@@ -7,6 +7,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.android_bootcamp.BuildConfig
 import com.example.android_bootcamp.R
 import com.example.android_bootcamp.presentation.base.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentRegisterBinding
@@ -22,6 +23,13 @@ import kotlinx.coroutines.launch
 class Register : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
 
     private val viewModel: RegisterViewModel by viewModels()
+    override fun setUp() {
+        if (BuildConfig.DEBUG){
+            binding.emailId.setText("eve.holt@reqres.in")
+            binding.passwordId.setText("paroli")
+            binding.passwordRepId.setText("paroli")
+        }
+    }
 
     override fun setListeners() {
         with(binding) {
@@ -42,18 +50,26 @@ class Register : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::
     override fun setObservers() {
 
         launchCoroutine {
-            viewModel.state.collectLatest { state ->
-
+            viewModel.uiState.collectLatest { state ->
                 binding.progressBar.visibility = if (state.isLoading) View.VISIBLE else View.GONE
+            }
+        }
 
-                state.validationError?.let { showToast(it) }
-                state.registrationError?.let { showToast(getString(R.string.registration_failed, it)) }
+        launchCoroutine {
+            viewModel.eventFlow.collectLatest { event ->
+                when (event) {
+                    is RegisterUiEvent.NavigateToHome -> {
+                        showToast(getString(R.string.registration_successful))
+                        navigate()
+                    }
 
-                if (state.isRegistered) {
-                    showToast(getString(R.string.registration_successful))
-                    navigate()
+                    is RegisterUiEvent.ShowError -> {
+                        showToast(event.message)
+                    }
+                    else -> {}
                 }
             }
+
         }
     }
 

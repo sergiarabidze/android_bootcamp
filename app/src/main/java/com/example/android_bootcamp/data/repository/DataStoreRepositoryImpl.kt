@@ -1,6 +1,5 @@
 package com.example.android_bootcamp.data.repository
 
-import android.util.Log.d
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -10,24 +9,23 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class DataStoreRepositoryImpl@Inject constructor(private val dataStore : DataStore<Preferences>) : DataStoreRepository{
+class DataStoreRepositoryImpl @Inject constructor(
+    private val dataStore: DataStore<Preferences>
+) : DataStoreRepository {
 
-   override suspend fun saveSession(token: String, email: String) {
-            dataStore.edit { preferences ->
-                preferences[PreferenceKeys.TOKEN] = token
-                preferences[PreferenceKeys.EMAIL] = email
-            }
-    }
-    override fun readSession(): Flow<Pair<String?, String?>> {
-        return dataStore.data
-            .map { preferences ->
-                val token = preferences[PreferenceKeys.TOKEN]
-                val email = preferences[PreferenceKeys.EMAIL]
-                Pair(token, email)
-            }
+    override suspend fun <T> save(key: Preferences.Key<T>, value: T) {
+        dataStore.edit { preferences ->
+            preferences[key] = value
+        }
     }
 
-    override suspend fun clearSession (){
+    override fun <T> get(key: Preferences.Key<T>): Flow<T?> {
+        return dataStore.data.map { preferences ->
+            preferences[key]
+        }
+    }
+
+    override suspend fun clear() {
         dataStore.edit { preferences ->
             preferences.clear()
         }

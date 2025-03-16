@@ -6,5 +6,4 @@ sealed class LoginEvent {
         val password: String,
         val rememberMe: Boolean
     ) : LoginEvent()
-    data object ClearErrors : LoginEvent()
 }
