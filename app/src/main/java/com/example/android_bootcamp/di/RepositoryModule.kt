@@ -1,7 +1,7 @@
 package com.example.android_bootcamp.di
 
-import com.example.android_bootcamp.domain.repository.UserRepository
-import com.example.android_bootcamp.data.repository.UserRepositoryImpl
+import com.example.android_bootcamp.data.repository.ExcavatorRepositoryImpl
+import com.example.android_bootcamp.domain.repository.ExcavatorRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,7 +15,6 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindUserRepository(
-        userRepositoryImpl: UserRepositoryImpl
-    ): UserRepository
-
+        userRepositoryImpl: ExcavatorRepositoryImpl
+    ): ExcavatorRepository
 }
