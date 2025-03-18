@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.DI
+package com.example.android_bootcamp.di
 
 import android.content.Context
 import androidx.room.Room

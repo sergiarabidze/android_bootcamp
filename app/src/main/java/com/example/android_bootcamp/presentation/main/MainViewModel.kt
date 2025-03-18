@@ -2,7 +2,7 @@ package com.example.android_bootcamp.presentation.main
 
 import android.util.Log.d
 import androidx.lifecycle.ViewModel
-import com.example.android_bootcamp.data.repository.UserRepository
+import com.example.android_bootcamp.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

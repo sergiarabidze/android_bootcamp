@@ -3,6 +3,7 @@ package com.example.android_bootcamp.data.repository
 import com.example.android_bootcamp.data.local.UserDao
 import com.example.android_bootcamp.data.local.UserEntity
 import com.example.android_bootcamp.data.remote.ServiceApi
+import com.example.android_bootcamp.domain.repository.UserRepository
 import retrofit2.Response
 import javax.inject.Inject
 

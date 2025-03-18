@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.data.repository
+package com.example.android_bootcamp.domain.repository
 
 import com.example.android_bootcamp.data.local.UserEntity
 import retrofit2.Response

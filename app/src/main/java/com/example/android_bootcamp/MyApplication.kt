@@ -1,4 +1,4 @@
-package com.example.android_bootcamp.common
+package com.example.android_bootcamp
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
