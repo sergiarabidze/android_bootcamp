@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".presentation.features.options.OptionsBottomSheet"
+    android:orientation="horizontal">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/take_pic_id"
+        android:text="take a picture"
+        android:layout_weight="1"
+        android:layout_margin="12dp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/upload_id"
+        android:text="upload photo from gallery"
+        android:layout_weight="1"
+        android:layout_margin="12dp"
+        />
+
+
+
+</LinearLayout>
