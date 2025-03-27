@@ -1,14 +1,22 @@
 [versions]
 agp = "8.6.1"
+androidxHiltHiltWork = "1.0.0"
+androidxHiltWork = "1.2.0"
+androidxHiltWorkVersion = "1.1.0"
+androidxWorkRuntimeKtx = "2.8.1"
+firebaseStorageKtx = "21.0.1"
 glide = "4.16.0"
 gson = "2.11.0"
-hiltAndroid = "2.51.1"
+hiltAndroid = "2.55"
+hiltCompiler = "1.0.0"
+hiltWorkVersion = "1.2.0"
 kotlin = "1.9.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
+kotlinxCoroutinesPlayServices = "1.7.3"
 material = "1.12.0"
 activity = "1.9.3"
 constraintlayout = "2.2.0"
@@ -16,23 +24,35 @@ navigationFragment = "2.8.5"
 retrofit = "2.9.0"
 kotlinxSerializationJson = "1.8.0"
 roomKtx = "2.6.1"
+workRuntimeKtx = "2.10.0"
+hiltCommon = "1.2.0"
+hiltWork = "1.2.0"
+workRuntimeKtxVersion = "2.10.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltWorkVersion" }
+androidx-hilt-compiler-v100 = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler" }
+androidx-hilt-work-v100 = { module = "androidx.hilt:hilt-work", version.ref = "androidxHiltHiltWork" }
+androidx-hilt-work-v110 = { module = "androidx.hilt:hilt-work", version.ref = "androidxHiltWork" }
 androidx-navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationFragment" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomKtx" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomKtx" }
+androidx-work-runtime-ktx-v281 = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtxVersion" }
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+firebase-storage-ktx = { module = "com.google.firebase:firebase-storage-ktx", version.ref = "firebaseStorageKtx" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
+hilt-work-v110 = { module = "androidx.hilt:hilt-work", version.ref = "androidxHiltWorkVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinxCoroutinesPlayServices" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
@@ -40,6 +60,8 @@ androidx-navigation-fragment = { group = "androidx.navigation", name = "navigati
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "retrofit" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+androidx-hilt-common = { group = "androidx.hilt", name = "hilt-common", version.ref = "hiltCommon" }
+work-runtime-ktx-v281 = { module = "androidx.work:work-runtime-ktx", version.ref = "androidxWorkRuntimeKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

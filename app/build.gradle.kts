@@ -4,6 +4,7 @@ plugins {
     id("androidx.navigation.safeargs")
     kotlin("plugin.serialization") version "2.1.0"
     id("com.google.devtools.ksp")
+    id("com.google.gms.google-services")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
@@ -66,7 +67,12 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
+    implementation(libs.firebase.storage.ktx)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation (libs.androidx.hilt.work.v100)
+    kapt (libs.androidx.hilt.compiler.v100)
+    implementation(libs.work.runtime.ktx.v281)
+    implementation (libs.kotlinx.coroutines.play.services)
 }
 kapt {
     correctErrorTypes = true

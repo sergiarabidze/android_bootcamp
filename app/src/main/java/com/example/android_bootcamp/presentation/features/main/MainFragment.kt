@@ -3,44 +3,68 @@ package com.example.android_bootcamp.presentation.features.main
 
 import android.net.Uri
 import android.os.Environment
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.android_bootcamp.presentation.common.BaseFragment
 import com.example.android_bootcamp.databinding.FragmentMainFragmentBinding
 import com.example.android_bootcamp.presentation.features.options.OptionsBottomSheet
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.io.File
 
+@AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainFragmentBinding>(FragmentMainFragmentBinding::inflate) {
      private val viewModel: MainViewModel by viewModels()
 
-     private var selectedImageUri: Uri? = null
-
      private val galleryLauncher =
           registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-               uri?.let { handleImageSelection(it) }
+               uri?.let {
+                    viewModel.handleEvent(MainEvent.ImageSelected(it))
+               }
           }
 
      private val cameraLauncher =
           registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
-               if (success) selectedImageUri?.let { handleImageSelection(it) }
+               if (success) {
+                    viewModel.state.value.tempCameraUri?.let { uri ->
+                         viewModel.handleEvent(MainEvent.ImageSelected(uri))
+                    }
+               }
           }
 
      override fun setUp() {
-          setupClickListeners()
           setupObservers()
      }
 
-     private fun setupClickListeners() {
+     override fun setListeners() {
           binding.uploadId.setOnClickListener {
                showOptionsBottomSheet()
+          }
+
+          binding.uploadStorageId.setOnClickListener {
+               viewModel.handleEvent(MainEvent.UploadImage)
           }
      }
 
      private fun setupObservers() {
-          viewModel.compressedBitmap.observe(viewLifecycleOwner) { bitmap ->
-               bitmap?.let {
-                    binding.photoId.setImageBitmap(it)
+          viewLifecycleOwner.lifecycleScope.launch {
+               viewModel.state.collectLatest { state ->
+                    binding.uploadStorageId.isEnabled = state.isButtonEnabled
+                    state.bitmap?.let {
+                         binding.photoId.setImageBitmap(it)
+                         binding.photoId.setImageURI(null)
+                    }
+                    state.uri?.let {
+                         binding.photoId.setImageURI(it)
+                    }
+                    state.error?.let {
+                         Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                         viewModel.clearErrorState()
+                    }
                }
           }
      }
@@ -51,7 +75,6 @@ class MainFragment : BaseFragment<FragmentMainFragmentBinding>(FragmentMainFragm
                     if (isCamera) openCamera() else openGallery()
                }
           }.show(parentFragmentManager, "OptionsBottomSheet")
-
      }
 
      private fun openGallery() {
@@ -60,13 +83,9 @@ class MainFragment : BaseFragment<FragmentMainFragmentBinding>(FragmentMainFragm
 
      private fun openCamera() {
           getTempFileUri().let { uri ->
-               selectedImageUri = uri
+               viewModel.handleEvent(MainEvent.CameraUriCreated(uri))
                cameraLauncher.launch(uri)
           }
-     }
-
-     private fun handleImageSelection(uri: Uri) {
-          viewModel.compressImage(requireContext(), uri)
      }
 
      private fun getTempFileUri(): Uri {
