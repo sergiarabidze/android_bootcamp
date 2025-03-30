@@ -1,10 +1,10 @@
 package com.example.android_bootcamp.di
 
-import android.content.Context
-import androidx.room.Room
-import com.example.android_bootcamp.data.local.UserDao
-import com.example.android_bootcamp.data.local.UserDataBase
-import com.example.android_bootcamp.data.remote.ServiceApi
+import com.example.android_bootcamp.data.remote.service.AccountServiceApi
+import com.example.android_bootcamp.data.remote.request.ApiHelper
+import com.example.android_bootcamp.data.remote.service.ToAccountConfirmationServiceApi
+import com.example.android_bootcamp.domain.useCase.GetCourseUseCase
+import com.example.android_bootcamp.domain.useCase.ValidateInputUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,32 +20,32 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMyApi() : ServiceApi {
+    fun provideAccountApi() : AccountServiceApi {
          val baseUrl : String = "https://run.mocky.io/"
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(ServiceApi::class.java)
+            .create(AccountServiceApi::class.java)
+    }
+    @Provides
+    @Singleton
+    fun provideConfirmationApi() : ToAccountConfirmationServiceApi {
+        val baseUrl : String = "https://run.mocky.io/"
+        return Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ToAccountConfirmationServiceApi::class.java)
     }
 
-
-
-    private const val DATABASE_NAME = "user_database"
 
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext context: Context): UserDataBase {
-        return Room.databaseBuilder(
-            context.applicationContext,
-            UserDataBase::class.java,
-            DATABASE_NAME
-        ).build()
+    fun provideApiHelper(): ApiHelper {
+        return ApiHelper()
     }
 
-    @Provides
-    @Singleton
-    fun provideUserDao(database: UserDataBase): UserDao {
-        return database.userDao()
-    }
+
+
 }

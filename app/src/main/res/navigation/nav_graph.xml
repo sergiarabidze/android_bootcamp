@@ -7,9 +7,23 @@
 
     <fragment
         android:id="@+id/payment"
-        android:name="com.example.android_bootcamp.presentation.main.MainFragment"
+        android:name="com.example.android_bootcamp.presentation.features.main.MainFragment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_main_fragment" >
+        <action
+            android:id="@+id/action_payment_to_accountBottomSheet"
+            app:destination="@id/accountBottomSheet" />
+        <action
+            android:id="@+id/action_payment_to_toAccountBottomSheet"
+            app:destination="@id/toAccountBottomSheet" />
     </fragment>
+    <dialog
+        android:id="@+id/accountBottomSheet"
+        android:name="com.example.android_bootcamp.presentation.features.accounts.AccountBottomSheet"
+        android:label="AccountBottomSheet" />
+    <dialog
+        android:id="@+id/toAccountBottomSheet"
+        android:name="com.example.android_bootcamp.presentation.features.to_account.ToAccountBottomSheet"
+        android:label="ToAccountBottomSheet" />
 
 </navigation>

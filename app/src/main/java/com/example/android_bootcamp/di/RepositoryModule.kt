@@ -1,21 +1,27 @@
 package com.example.android_bootcamp.di
 
-import com.example.android_bootcamp.domain.repository.UserRepository
-import com.example.android_bootcamp.data.repository.UserRepositoryImpl
+import com.example.android_bootcamp.data.repository.AccountsRepositoryImpl
+import com.example.android_bootcamp.data.repository.ToAccountConfirmationRepositoryImpl
+
+import com.example.android_bootcamp.domain.repository.AccountRepository
+import com.example.android_bootcamp.domain.repository.ToAccountConfirmationRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
 
     @Binds
-    @Singleton
-    abstract fun bindUserRepository(
-        userRepositoryImpl: UserRepositoryImpl
-    ): UserRepository
+    abstract fun bindAccountRepository(
+        accountRepositoryImpl: AccountsRepositoryImpl
+    ): AccountRepository
+
+    @Binds
+    abstract fun bindToAccountConfirmationRepository(
+        toAccountConfirmationRepositoryImpl: ToAccountConfirmationRepositoryImpl
+        ): ToAccountConfirmationRepository
 
 }
