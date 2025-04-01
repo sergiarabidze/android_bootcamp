@@ -6,8 +6,8 @@ import java.io.IOException
 
 class ApiHelper{
     suspend fun <T> handleHttpRequest ( apiCall : suspend () -> Response<T>): Resource<T> {
-        val response = apiCall.invoke()
         return try{
+            val response = apiCall.invoke()
             if (response.isSuccessful){
                 response.body()?.let {
                     Resource.Success(data = it)

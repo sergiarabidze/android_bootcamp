@@ -1,6 +1,5 @@
 package com.example.android_bootcamp.presentation.login
 
-import android.util.Log.d
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_bootcamp.data.remote.httpRequest.Resource
@@ -10,12 +9,11 @@ import com.example.android_bootcamp.domain.usecase.auth.ValidateLoginCredentials
 import com.example.android_bootcamp.domain.usecase.datastoreusecase.ReadSessionUseCase
 import com.example.android_bootcamp.domain.usecase.datastoreusecase.SaveSessionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,23 +26,27 @@ class LoginViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(LoginState())
-    val state: StateFlow<LoginState> get() = _state
+    val state: StateFlow<LoginState> = _state.asStateFlow()
 
     private val _eventFlow = MutableSharedFlow<LoginUiEvent>()
-    val eventFlow get() = _eventFlow
+    val eventFlow = _eventFlow.asSharedFlow()
 
     init {
+        loadSavedSession()
+    }
+
+    private fun loadSavedSession() {
         viewModelScope.launch {
-            readSessionUseCase().collectLatest { (savedToken, savedEmail) ->
-                if (!savedToken.isNullOrEmpty() && !savedEmail.isNullOrEmpty()) {
-                    _state.value = _state.value.copy(
-                        isLoggedIn = true,
-                        token = savedToken,
-                        email = savedEmail
-                    )
-                    readSessionUseCase()
-                    d("raghac error","${readSessionUseCase.invoke().first()}")
-                    _eventFlow.emit(LoginUiEvent.NavigateToHome(savedToken,savedEmail))
+            readSessionUseCase().collect { (token, email) ->
+                if (!token.isNullOrEmpty() && !email.isNullOrEmpty()) {
+                    updateState {
+                        it.copy(
+                            token = token,
+                            email = email,
+                            rememberMe = true
+                        )
+                    }
+                    _eventFlow.emit(LoginUiEvent.NavigateToHome(email))
                 }
             }
         }
@@ -52,64 +54,79 @@ class LoginViewModel @Inject constructor(
 
     fun onEvent(event: LoginEvent) {
         when (event) {
-            is LoginEvent.Submit -> {
-                handleLogin(event.email, event.password, event.rememberMe)
+            is LoginEvent.Submit -> handleLogin(event.email, event.password)
+            is LoginEvent.UpdateRememberMe -> updateRememberMe(event.rememberMe)
+            is LoginEvent.EmailChanged -> onEmailChanged(event.email)
+            is LoginEvent.PasswordChanged -> onPasswordChanged(event.password)
+        }
+    }
+
+    private fun validateFields(email: String, password: String) {
+        viewModelScope.launch {
+            when (val result = validateLoginCredentialsUseCase(email, password)) {
+                is ValidationResult.Success -> updateState {
+                    it.copy(isButtonEnabled = true, error = null)
+                }
+                is ValidationResult.Error -> updateState {
+                    it.copy(isButtonEnabled = false, error = result.message)
+                }
             }
         }
     }
 
-    fun validateFields(email: String, password: String) {
-        _state.value = _state.value.copy(
-            isButtonEnabled = validateLoginCredentialsUseCase(email, password) is ValidationResult.Success
-        )
-    }
-
-    private fun handleLogin(email: String, password: String, rememberMe: Boolean) {
+    private fun handleLogin(email: String, password: String) {
         viewModelScope.launch {
-            val validationResult = validateLoginCredentialsUseCase(email, password)
-            if (validationResult is ValidationResult.Error) {
-                _state.value = _state.value.copy(
-                    validationError = validationResult.message,
-                    isLoading = false
-                )
-                _eventFlow.emit(LoginUiEvent.ShowError(validationResult.message))
-                return@launch
-            }
+            updateState { it.copy(isLoading = true) }
 
-            _state.value = _state.value.copy(isLoading = true, validationError = null, loginError = null)
             when (val result = loginUserUseCase(email, password)) {
                 is Resource.Success -> {
-                    _state.value = _state.value.copy(
-                        isLoading = false,
-                        isLoggedIn = true,
-                        successFullLogIn = true,
-                        token = result.data.token,
-                        email = email
-                    )
-                    if (rememberMe) {
+                    updateState {
+                        it.copy(
+                            isLoading = false,
+                            token = result.data.token,
+                            email = email,
+                            rememberMe = _state.value.rememberMe
+                        )
+                    }
+
+                    _eventFlow.emit(LoginUiEvent.NavigateToHome(email))
+                    if (_state.value.rememberMe) {
                         saveSessionUseCase(result.data.token, email)
                     }
-                    _eventFlow.emit(LoginUiEvent.NavigateToHome(result.data.token,email))
-
                 }
 
                 is Resource.Error -> {
-                    _state.value = _state.value.copy(
-                        isLoading = false,
-                        loginError = result.message
-                    )
-                    _eventFlow.emit(LoginUiEvent.ShowError(result.message))
+                    updateState { it.copy(isLoading = false, error = it.error) }
                 }
-                else -> {
-                    _state.value = _state.value.copy(isLoading = false)
-                }
+
+                Resource.Loading -> updateState { it.copy(isLoading = true) }
+
+                Resource.Idle -> {}
+
             }
         }
     }
-    override fun onCleared() {
-        super.onCleared()
-        _state.value = LoginState()
+
+    private fun updateRememberMe(rememberMe: Boolean) {
+        updateState { it.copy(rememberMe = rememberMe) }
     }
 
-}
 
+    private fun onEmailChanged(newEmail: String) {
+        updateState { it.copy(email = newEmail) }
+        validateFields(newEmail, state.value.password)
+    }
+
+    private fun onPasswordChanged(newPassword: String) {
+        updateState { it.copy(password = newPassword) }
+        validateFields(state.value.email, newPassword)
+    }
+
+    private fun updateState(transform: (LoginState) -> LoginState) {
+        _state.value = transform(_state.value)
+    }
+
+    fun clearError(){
+        updateState { it.copy(error = null) }
+    }
+}

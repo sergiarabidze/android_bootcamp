@@ -6,6 +6,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
@@ -25,6 +26,10 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        compose  = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.10.1"
     }
 
     buildTypes {
@@ -58,6 +63,7 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.material3.android)
     kapt(libs.hilt.android.compiler)
     implementation (libs.androidx.room.paging)
     implementation(libs.androidx.room.ktx)
@@ -82,6 +88,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.ui.tooling)
+    implementation(libs.androidx.activity.compose)
 }
 
 kapt {

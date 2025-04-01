@@ -6,4 +6,9 @@ sealed class LoginEvent {
         val password: String,
         val rememberMe: Boolean
     ) : LoginEvent()
+    data class UpdateRememberMe(val rememberMe: Boolean) : LoginEvent()
+    data class EmailChanged(val email: String) : LoginEvent()
+    data class PasswordChanged(val password: String) : LoginEvent()
+
+
 }

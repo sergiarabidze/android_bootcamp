@@ -1,6 +1,5 @@
 package com.example.android_bootcamp.presentation.register
 
-sealed interface RegisterUiEvent {
-    data class ShowError(val message: String) : RegisterUiEvent
-    data object NavigateToHome : RegisterUiEvent
+sealed class RegisterUiEvent {
+    data class NavigateToHome(val email: String, val password: String) : RegisterUiEvent()
 }
