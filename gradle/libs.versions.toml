@@ -18,6 +18,7 @@ activity = "1.9.3"
 constraintlayout = "2.2.0"
 materialVersion = "1.7.8"
 navigationFragment = "2.8.5"
+pagingCompose = "3.3.6"
 pagingRuntime = "3.3.5"
 retrofit = "2.9.0"
 kotlinxSerializationJson = "1.8.0"
@@ -33,6 +34,7 @@ androidx-datastore-preferences-rxjava2 = { module = "androidx.datastore:datastor
 androidx-datastore-preferences-rxjava3 = { module = "androidx.datastore:datastore-preferences-rxjava3", version.ref = "datastorePreferencesRxjava2" }
 androidx-material = { module = "androidx.compose.material:material", version.ref = "materialVersion" }
 androidx-navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationFragment" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingRuntime" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomKtx" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }

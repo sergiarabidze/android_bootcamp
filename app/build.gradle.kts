@@ -92,6 +92,7 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.androidx.ui.tooling)
     implementation(libs.androidx.activity.compose)
+    implementation (libs.androidx.paging.compose)
 }
 
 kapt {
